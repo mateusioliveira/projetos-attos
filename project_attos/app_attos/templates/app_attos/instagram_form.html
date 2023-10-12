@@ -1,0 +1,7 @@
+<form method="post" action="{% url 'instagram_button' %}">
+    {% csrf_token %}
+    <label for="instagram_link">Link do Instagram:</label>
+    <input type="text" name="instagram_link" id="instagram_link" required>
+    <br>
+    <input type="submit" value="Clique aqui para confirmar">
+</form>

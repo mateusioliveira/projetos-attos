@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from .models import Question
 from django.shortcuts import get_object_or_404, render
 
@@ -24,5 +24,10 @@ def detail(request, question_id):
     return render(request, "app_attos/detail.html", {"question": question})
 
 
+def instagram_button(request):
+    if request.method == 'POST':
+        instagram_link = request.POST.get('instagram_link')
+        return render(request, 'app_attos/instagram_button.html', {'instagram_link': instagram_link})
+    return render(request, 'app_attos/instagram_form.html')
 
 
