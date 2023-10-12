@@ -1,9 +1,6 @@
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/app_attos/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>ATTOS</p>
-{% endif %}
+<form method="post" action="{% url 'entrar' %}">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <input type="submit" value="Entrar">
+  </form>
