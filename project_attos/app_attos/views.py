@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
 
 index_page_html =  "app_attos/index.html"
 
@@ -37,6 +38,7 @@ def instagram_button(request):
         nomeRede = request.POST.get('nomeRede')
         return render(request, 'app_attos/instagram_button.html', {'instagram_link': instagram_link, 'nomeRede': nomeRede})
     return render(request, 'app_attos/instagram_form.html')
+
 @require_POST
 def cadastrar_usuario(request):
     try:
@@ -49,9 +51,18 @@ def cadastrar_usuario(request):
         nome_usuario = request.POST['nome-usuario']
         email = request.POST['email']
         senha = request.POST['senha']
+        telefone = request.POST['telefone']
+        endereco = request.POST['endereco']
+        ano_fundacao = request.POST['ano_fundacao']
+        categoria = request.POST['categoria']
+
         novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
         novoUsuario.save()
-        return entrar(request)
+        UserProfile.objects.create(user=novoUsuario, phone=telefone, address=endereco, year=ano_fundacao, category=categoria)
+
+        login(request, novoUsuario)
+
+        return HttpResponseRedirect('/perfil/')
 
 @require_POST
 def entrar(request):
