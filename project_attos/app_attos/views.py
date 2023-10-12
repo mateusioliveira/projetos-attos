@@ -27,7 +27,8 @@ def detail(request, question_id):
 def instagram_button(request):
     if request.method == 'POST':
         instagram_link = request.POST.get('instagram_link')
-        return render(request, 'app_attos/instagram_button.html', {'instagram_link': instagram_link})
+        nomeRede = request.POST.get('nomeRede')
+        return render(request, 'app_attos/instagram_button.html', {'instagram_link': instagram_link, 'nomeRede': nomeRede})
     return render(request, 'app_attos/instagram_form.html')
 
 
