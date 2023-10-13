@@ -6,17 +6,17 @@ name: Install dependencies
 
 name: Cleaning testing files
         run: |
-          cd SEUPROJETODJANGO/
+          cd project_attos/
           rm db.sqlite3
           rm .env
           cd..
-          
+
 name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: |
-            SEUPROJETODJANGO
+            project_attos
             !venv/
 
 name: Build and deploy Python app to Azure Web App - project-attos
