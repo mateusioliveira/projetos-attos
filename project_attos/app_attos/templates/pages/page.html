@@ -8,4 +8,14 @@
     <p style="margin: 10px 0;">Ano de Fundação: {{ user_profile.year }}</p>
     <p style="margin: 10px 0;">Categoria: {{ user_profile.category }}</p>
 
+    <p style="margin: 10px 0;">Redes Sociais:</p>
+    <ul>
+        {% for profile in profiles %}
+            <li>
+                <a href="{{ profile.instagram_link }}" target="_blank">
+                    <button>{{ profile.nomeRede }}</button>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
