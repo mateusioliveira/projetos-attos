@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ index_page_html =  "app_attos/index.html"
 
 def index(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/perfil/")
     else:
         return render(request, index_page_html)
     
@@ -62,7 +62,7 @@ def cadastrar_usuario(request):
 
         login(request, novoUsuario)
 
-        return HttpResponseRedirect('/perfil/')
+        return HttpResponseRedirect("/perfil/")
 
 @require_POST
 def entrar(request):
