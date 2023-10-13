@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Página do Usuário</title>
-</head>
-<body>
-    <h1>ONG {{ usuario.username }}</h1>
-    <p>Email: {{ usuario.email }}</p>
-    <p>Telefone: {{ user_profile.phone }}</p>
-    <p>Endereço: {{ user_profile.address }}</p>
-    <p>Ano da fundção: {{ user_profile.year }}</p>
-    <p>Categoria: {{ user_profile.category}}</p>
-</body>
-</html>
+<div style="max-width: 300px; margin: 0 auto; padding: 20px; border-radius: 5px; text-align: center;">
+
+    <h1 style="font-size: 24px; margin: 10px 0;">ONG {{ usuario.username }}</h1>
+
+    <p style="margin: 10px 0;">Email: {{ usuario.email }}</p>
+    <p style="margin: 10px 0;">Telefone: {{ user_profile.phone }}</p>
+    <p style="margin: 10px 0;">Endereço: {{ user_profile.address }}</p>
+    <p style="margin: 10px 0;">Ano de Fundação: {{ user_profile.year }}</p>
+    <p style="margin: 10px 0;">Categoria: {{ user_profile.category }}</p>
+
+</div>
