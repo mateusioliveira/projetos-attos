@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -17,8 +17,9 @@ def index(request):
 
 def pagina_da_ong(request, slug):
     usuario = User.objects.get(username=slug)
+    user_profile = get_object_or_404(UserProfile, user__username=slug)
     if usuario:
-        return render(request, "pages/page.html", {"usuario":usuario})
+        return render(request, "pages/page.html", {"usuario":usuario, "user_profile": user_profile})
 
 
 def pagina_de_cadastro(request):
