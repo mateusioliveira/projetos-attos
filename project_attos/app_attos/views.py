@@ -1,5 +1,4 @@
-from .models import InstagramProfile
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404,redirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -19,34 +18,27 @@ def index(request):
 def pagina_da_ong(request, slug):
     usuario = User.objects.get(username=slug)
     user_profile = get_object_or_404(UserProfile, user__username=slug)
-    profiles = InstagramProfile.objects.filter(user=usuario)
-
     if usuario:
-        return render(request, "pages/page.html", {"usuario": usuario, "user_profile": user_profile, 'profiles': profiles})
-
+        return render(request, "pages/page.html", {"usuario":usuario, "user_profile": user_profile})
 
 
 def pagina_de_cadastro(request):
     return render(request, "cadastro/cadastro.html")
 
+
 def pagina_de_perfil(request):
     if request.user.is_authenticated:
-        profiles = instagram_button(request)
-        return render(request, "perfil/perfil.html", {'profiles': profiles})
+        return render(request, "perfil/perfil.html")
     else:
         return HttpResponseRedirect("/")
 
 
-@login_required
 def instagram_button(request):
     if request.method == 'POST':
         instagram_link = request.POST.get('instagram_link')
-        nomeRede = request.POST.get('nomeRede')        
-        instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
-        instagram_profile.save()
-    profiles = InstagramProfile.objects.filter(user=request.user)
-    return profiles
-
+        nomeRede = request.POST.get('nomeRede')
+        return render(request, 'app_attos/instagram_button.html', {'instagram_link': instagram_link, 'nomeRede': nomeRede})
+    return render(request, 'app_attos/instagram_form.html')
 
 @require_POST
 def cadastrar_usuario(request):

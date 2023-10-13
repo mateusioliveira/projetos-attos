@@ -7,12 +7,6 @@ class UserProfile(models.Model):
     address = models.CharField(max_length=255)
     year = models.IntegerField()
     category = models.CharField(max_length=50)
-    
+
     def __str__(self):
         return self.user.username
-
-class InstagramProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    instagram_link = models.URLField()
-    nomeRede = models.CharField(max_length=100)
-

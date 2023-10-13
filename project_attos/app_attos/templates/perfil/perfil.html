@@ -1,33 +1,10 @@
 <div style="max-width: 300px; margin: 0 auto; padding: 20px; border-radius: 5px; text-align: center;">
-    <h1 style="font-size: 24px; margin: 10px 0;">Bem-vindo</h1>
+
+    <h1 style="font-size: 24px; margin: 10px 0;">Bem-vinde</h1>
+
     <form method="post" action="{% url 'sair' %}" style="margin: 10px 0;">
         {% csrf_token %}
         <input type="submit" value="Sair" style="width: 30%; background-color: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
     </form>
-</div>
 
-<fieldset>
-    <legend> <h3> Redes Sociais </h3></legend>
-    <form method="post" action="">
-        {% csrf_token %}
-        <label>Nome</label>
-        <input placeholder="Insira o nome" type="text" name="nomeRede" id="nomeRede" required>
-        <br>
-        <br>
-        <label for="instagram_link">Link</label>
-        <input placeholder="Insira o link" type="text" name="instagram_link" id="instagram_link" required>
-        <br>
-        <br>
-        <input type="submit" value="Confirmar">
-    </form>
-</fieldset>
-
-<div style="margin-top: 20px;">
-    <ul>
-        {% for profile in profiles %}
-            <li>
-                <a href="{{ profile.instagram_link }}" target="_blank">{{ profile.nomeRede }}</a>
-            </li>
-        {% endfor %}
-    </ul>
 </div>
