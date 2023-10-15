@@ -90,9 +90,9 @@
 
 ### Histórias escolhidas para serem implementadas
 
-**1. Como uma ONG, eu gostaria de ter um espaço reservado para mostrar minhas informações.(Nome da ONG, email, telefone de contato, endereço, fundação e categoria da ONG)**
+1. Como uma ONG, eu gostaria de ter um espaço reservado para mostrar minhas informações.(Nome da ONG, email, telefone de contato, endereço, fundação e categoria da ONG)
 
-**3. Como uma ONG, eu gostaria de inserir na minha página o link para meu perfil no instagram.**
+3. Como uma ONG, eu gostaria de inserir na minha página o link para meu perfil no instagram.
 
 
 ### Protótipo de baixa fidelidade
