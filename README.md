@@ -87,3 +87,25 @@
     
       **Então** as alterações devem ser refletidas imediatamente no site público
 
+
+### Histórias escolhidas para serem implementadas
+
+**1. Como uma ONG, eu gostaria de ter um espaço reservado para mostrar minhas informações.(Nome da ONG, email, telefone de contato, endereço, fundação e categoria da ONG)**
+
+**3. Como uma ONG, eu gostaria de inserir na minha página o link para meu perfil no instagram.**
+
+
+### Protótipo de baixa fidelidade
+
+
+### Diagrama de atividades
+
+https://drive.google.com/drive/folders/1_TWmogVmlvCNsWt1_H2qu9WVZa1uUrKQ
+
+
+### Deployment na Azure
+
+
+### Relato programação em pares
+
+https://docs.google.com/document/d/1PhdnrsMWYIwlh3XZIB1KhjPRZmlufF1EG-vm1H_GWdE/edit
