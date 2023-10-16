@@ -1,7 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 .input {
   width: 100%; 
-  padding: 10px; 
-  margin: 10px 0; 
-  border: 1px solid #ccc; 
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 8px; 
+  border-radius: 12px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
 }
