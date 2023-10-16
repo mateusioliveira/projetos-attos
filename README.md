@@ -101,7 +101,7 @@ https://www.figma.com/file/eKETbfkDCNHzvM7OyACGbp/Wireframe?type=design&node-id=
 
 ### Diagrama de atividades
 
-https://drive.google.com/drive/folders/1_TWmogVmlvCNsWt1_H2qu9WVZa1uUrKQ
+[https://drive.google.com/drive/folders/1_TWmogVmlvCNsWt1_H2qu9WVZa1uUrKQ](https://drive.google.com/drive/folders/11A9dAAwr0DtjgUPZ0c9U0dgR8fM6oDZN)
 
 ### Issue/bug tracker
 
