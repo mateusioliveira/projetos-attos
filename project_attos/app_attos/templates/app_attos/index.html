@@ -2,9 +2,19 @@
   {% csrf_token %}
   <div style="max-width: 300px; margin: 0 auto; padding: 20px; background-color: #f2f2f2; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
 
-      <input type="email" name="email" placeholder="E-mail" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-      <input type="password" name="senha" placeholder="Senha" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-      
-      <input type="submit" value="Entrar" style="width: 100%; background-color: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+    <input type="email" name="email" placeholder="E-mail" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+    
+    <input type="password" name="senha" placeholder="Senha" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+    
+    <input type="submit" value="Entrar" style="width: 100%; background-color: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
   </div>
 </form>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+

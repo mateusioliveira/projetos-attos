@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile, InstagramProfile
+from django.contrib import messages
 
 index_page_html =  "app_attos/index.html"
 def index(request):
@@ -64,15 +65,21 @@ def cadastrar_usuario(request):
         UserProfile.objects.create(user=novoUsuario, phone=telefone, address=endereco, year=ano_fundacao, category=categoria)
         login(request, novoUsuario)
         return HttpResponseRedirect("/perfil/")
+    
 @require_POST
 def entrar(request):
-    usuario_aux = User.objects.get(email=request.POST['email'])
-    usuario = authenticate(username=usuario_aux.username,
-                           password=request.POST["senha"])
+    try:
+        usuario_aux = User.objects.get(email=request.POST['email'])
+    except User.DoesNotExist:
+        messages.error(request, "Usuário não existe ou credenciais incorretas")
+        return HttpResponseRedirect("/")
+    
+    usuario = authenticate(username=usuario_aux.username,password=request.POST["senha"])
     if usuario is not None:
         login(request, usuario)
         return HttpResponseRedirect('/perfil/')
     return HttpResponseRedirect("/")
+
 @login_required
 def sair(request):
     logout(request)
