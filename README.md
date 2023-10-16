@@ -102,6 +102,10 @@
 
 https://drive.google.com/drive/folders/1_TWmogVmlvCNsWt1_H2qu9WVZa1uUrKQ
 
+### Issue/bug tracker
+
+![image](https://github.com/mateusioliveira/projetos-attos/assets/98843736/e8a7bff1-53fd-4e12-a08c-fc7a6a2711bf)
+
 
 ### Deployment na Azure
 
