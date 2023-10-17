@@ -88,7 +88,7 @@
       **Então** as alterações devem ser refletidas imediatamente no site público
 
 
-### Histórias escolhidas para serem implementadas
+### Histórias implementadas
 
 1. Como uma ONG, eu gostaria de ter um espaço reservado para mostrar minhas informações.(Nome da ONG, email, telefone de contato, endereço, fundação e categoria da ONG)
 
@@ -98,6 +98,9 @@
 ### Protótipo de baixa fidelidade
 
 https://www.figma.com/file/eKETbfkDCNHzvM7OyACGbp/Wireframe?type=design&node-id=0%3A1&mode=design&t=IwqEGvG4eMyYerJf-1
+
+### Screencast Protótipo de Baixa Fidelidade
+[https://drive.google.com/file/d/1KoaUvc6jR0fqAHj-TKX7utW-RnOsRQeD/view?usp=drive_link](https://drive.google.com/file/d/1KoaUvc6jR0fqAHj-TKX7utW-RnOsRQeD/view?usp=sharing)
 
 ### Diagrama de atividades
 
@@ -113,12 +116,11 @@ https://drive.google.com/file/d/1UTOd5p0q6E0jcMnwi_I_FqzYtx_WNoEp/view?usp=shari
 
 ![image](https://github.com/mateusioliveira/projetos-attos/assets/98843736/dfe0e015-8dbc-4eb1-919b-70c0fc6bf83c)
 
-
 ### Deployment na Azure
 
 https://project-attos.azurewebsites.net/
 
-## Screencast Deployment
+### Screencast Deployment
 https://drive.google.com/file/d/1AF14gEdJD4Bnf-GVM9LZ-9enWJUW0c6i/view?usp=sharing
 
 
