@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap');
 
+body {
+  font-family: 'Inter', sans-serif;
+}
 .input {
   width: 100%;
   padding: 10px;
@@ -9,9 +12,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-.text-top{
-  font-family: 'Inter', sans-serif;
-}
 .text{
   font-family: 'Inter', sans-serif;
   text-align: left;
@@ -26,4 +26,9 @@
   border-radius: 5px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
 }
