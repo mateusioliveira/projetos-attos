@@ -7,8 +7,9 @@ body {
 .input {
   width: 100%; 
   border: 1px solid #ccc;
+  padding: 12px;
   margin-bottom: 8px; 
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .label {
