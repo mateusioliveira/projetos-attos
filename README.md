@@ -101,7 +101,7 @@ https://www.figma.com/file/eKETbfkDCNHzvM7OyACGbp/Wireframe?type=design&node-id=
 
 ### Diagrama de atividades
 
-https://drive.google.com/drive/folders/1_TWmogVmlvCNsWt1_H2qu9WVZa1uUrKQ
+https://drive.google.com/file/d/1UTOd5p0q6E0jcMnwi_I_FqzYtx_WNoEp/view?usp=sharing
 
 ### Issue/bug tracker
 
@@ -121,4 +121,4 @@ https://project-attos.azurewebsites.net/
 
 ### Relato programação em pares
 
-https://docs.google.com/document/d/1PhdnrsMWYIwlh3XZIB1KhjPRZmlufF1EG-vm1H_GWdE/edit
+https://docs.google.com/document/d/1PhdnrsMWYIwlh3XZIB1KhjPRZmlufF1EG-vm1H_GWdE/edit?usp=sharing

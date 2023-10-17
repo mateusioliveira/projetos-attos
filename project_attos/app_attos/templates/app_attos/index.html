@@ -1,28 +1,37 @@
-<form method="post" action="{% url 'entrar' %}">
-  {% csrf_token %}
-  <div style="max-width: 300px; margin: 0 auto; padding: 20px; background-color: #f2f2f2; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'app_attos.css' %}">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
 
-    <input type="email" name="email" placeholder="E-mail" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-    
-    <input type="password" name="senha" placeholder="Senha" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-    
-    <input type="submit" value="Entrar" style="width: 100%; background-color: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-    
-    <p style="text-align: center;">É novo por aqui?</p>
-
-    <div style="text-align: center;">
-      <a href="{% url 'cadastrar' %}">Cadastre-se</a>
+<main class="main-container">
+  <img src="{% static 'images/logo.png' %}" alt="Logo da Attos">
+  <form method="post" action="{% url 'entrar' %}">
+    {% csrf_token %}
+    <div class="container-inputs">
+      <label class="label" for="email">E-mail</label>
+      <input class="input" id="email" type="email" name="email" required>
+      <label class="label" for="senha">Senha</label>
+      <input class="input" id="senha" type="password" name="senha" required>
+      
+      <button type="submit" value="Entrar" class="submit">
+        Entrar
+      </button>
     </div>
-
+  </form>
+  <div style="text-align: center;">
+    <span>É novo por aqui? </span>
+    <a href="{% url 'cadastrar' %}">Cadastre-se</a>
   </div>
-</form>
+  
+  <div style="text-align: center;">
+    {% if messages %}
+      <ul class="messages" style="list-style-type: none; padding: 0;">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</main>
 
-<div style="text-align: center;">
-  {% if messages %}
-    <ul class="messages" style="list-style-type: none; padding: 0;">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-</div>

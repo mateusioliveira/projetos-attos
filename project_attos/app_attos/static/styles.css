@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif;
+}
+
+.text{
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+
+.botao{
+  width: 70%;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
