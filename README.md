@@ -3,7 +3,6 @@
 **Integrantes do grupo - CC:**
 - Julia Felix
 - Matheus Roberto
-- Matheus Rian
 - Talita Daniele  
 - Victor Guilherme 
 - Vitória Régia
