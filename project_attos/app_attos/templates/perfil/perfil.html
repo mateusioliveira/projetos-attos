@@ -30,4 +30,19 @@
             </li>
         {% endfor %}
     </ul>
-</div>
+
+    <h3>Fotos Enviadas:</h3>
+    <ul>
+        {% for photo in photos %}
+            <li>
+                <img src="{{ photo.foto.url }}" style="max-width: 300px;">
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" action="{% url 'add_foto' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar Fotos</button>
+    </form>
+    

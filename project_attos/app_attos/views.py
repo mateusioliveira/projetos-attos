@@ -1,11 +1,12 @@
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404,redirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile, InstagramProfile
+from .models import UserProfile, InstagramProfile,Fotos
 from django.contrib import messages
+from.forms import OngForm
 
 index_page_html =  "app_attos/index.html"
 def index(request):
@@ -18,32 +19,51 @@ def pagina_da_ong(request, slug):
     usuario = User.objects.get(username=slug)
     user_profile = get_object_or_404(UserProfile, user__username=slug)
     profiles = InstagramProfile.objects.filter(user=usuario)
-
+    fotos = Fotos.objects.filter(user=usuario)  # Altere de request.user para o usuário correto
     if usuario:
-        return render(request, "pages/page.html", {"usuario": usuario, "user_profile": user_profile, 'profiles': profiles})
+        return render(request, "pages/page.html", {"usuario": usuario, "user_profile": user_profile, 'profiles': profiles, 'fotos': fotos})
+
 
 
 
 def pagina_de_cadastro(request):
     return render(request, "cadastro/cadastro.html")
 
+@login_required
 def pagina_de_perfil(request):
-    if request.user.is_authenticated:
-        profiles = instagram_button(request)
-        return render(request, "perfil/perfil.html", {'profiles': profiles})
-    else:
-        return HttpResponseRedirect("/")
+    form = OngForm()  # Crie uma instância do formulário
+    profiles = instagram_button(request)
+    photos = Fotos.objects.filter(user=request.user)
+    return render(request, "perfil/perfil.html", {'form': form, 'profiles': profiles, 'photos': photos})
+
 
 
 @login_required
 def instagram_button(request):
     if request.method == 'POST':
         instagram_link = request.POST.get('instagram_link')
-        nomeRede = request.POST.get('nomeRede')        
-        instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
-        instagram_profile.save()
+        nomeRede = request.POST.get('nomeRede')
+        if instagram_link:  # Certifique-se de que o campo não está vazio
+            instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
+            instagram_profile.save()
+        else:
+            messages.error(request, "O campo 'Instagram Link' não pode estar vazio.")
+            return redirect('/perfil/') 
     profiles = InstagramProfile.objects.filter(user=request.user)
     return profiles
+
+
+@login_required
+def add_foto(request):
+    if request.method == 'POST':
+        form = OngForm(request.POST, request.FILES)
+        form.instance.user = request.user
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Foto adicionada com sucesso!')
+        else:
+            messages.error(request, 'Houve um erro ao adicionar a foto. Certifique-se de selecionar uma imagem válida.')
+    return redirect('pagina_de_perfil')
 
 
 @require_POST

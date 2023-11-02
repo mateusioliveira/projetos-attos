@@ -21,3 +21,14 @@
         {% endfor %}
     </ul>
 </div>
+
+<div>
+    <h2>Fotos</h2>
+    <ul>
+        {% for foto in fotos %}
+            <li>
+                <img src="{{ foto.foto.url }}" alt="Foto">
+            </li>
+        {% endfor %}
+    </ul>
+</div>
