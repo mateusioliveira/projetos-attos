@@ -1,37 +1,33 @@
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile, InstagramProfile,Fotos
 from django.contrib import messages
-from.forms import OngForm
+from django.http import HttpResponseRedirect
+from .models import UserProfile, InstagramProfile, Fotos
+from .forms import OngForm
+from django.contrib.auth.models import User
 
-index_page_html =  "app_attos/index.html"
+index_page_html = "app_attos/index.html"
+
 def index(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect("/perfil/")
-    else:
-        return render(request, index_page_html)
-    
+    return render(request, index_page_html)
+
 def pagina_da_ong(request, slug):
-    usuario = User.objects.get(username=slug)
-    user_profile = get_object_or_404(UserProfile, user__username=slug)
+    usuario = get_object_or_404(User, username=slug)
+    user_profile = get_object_or_404(UserProfile, user=usuario)
     profiles = InstagramProfile.objects.filter(user=usuario)
-    fotos = Fotos.objects.filter(user=usuario)  # Altere de request.user para o usuário correto
-    if usuario:
-        return render(request, "pages/page.html", {"usuario": usuario, "user_profile": user_profile, 'profiles': profiles, 'fotos': fotos})
-
-
-
+    fotos = Fotos.objects.filter(user=usuario)
+    return render(request, "pages/page.html", {"usuario": usuario, "user_profile": user_profile, 'profiles': profiles, 'fotos': fotos})
 
 def pagina_de_cadastro(request):
     return render(request, "cadastro/cadastro.html")
 
 @login_required
 def pagina_de_perfil(request):
-    form = OngForm()  # Crie uma instância do formulário
+    form = OngForm()  
     profiles = instagram_button(request)
     photos = Fotos.objects.filter(user=request.user)
     return render(request, "perfil/perfil.html", {'form': form, 'profiles': profiles, 'photos': photos})
@@ -43,7 +39,7 @@ def instagram_button(request):
     if request.method == 'POST':
         instagram_link = request.POST.get('instagram_link')
         nomeRede = request.POST.get('nomeRede')
-        if instagram_link:  # Certifique-se de que o campo não está vazio
+        if instagram_link:  
             instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
             instagram_profile.save()
         else:
@@ -60,11 +56,15 @@ def add_foto(request):
         form.instance.user = request.user
         if form.is_valid():
             form.save()
-            messages.success(request, 'Foto adicionada com sucesso!')
-        else:
-            messages.error(request, 'Houve um erro ao adicionar a foto. Certifique-se de selecionar uma imagem válida.')
     return redirect('pagina_de_perfil')
 
+@login_required
+def remover_fotos(request):
+    if request.method == 'POST':
+        fotos_a_remover = request.POST.getlist('fotos_a_remover')
+        if fotos_a_remover:
+            Fotos.objects.filter(id__in=fotos_a_remover).delete()
+    return redirect('pagina_de_perfil')
 
 @require_POST
 def cadastrar_usuario(request):
@@ -84,8 +84,8 @@ def cadastrar_usuario(request):
         novoUsuario.save()
         UserProfile.objects.create(user=novoUsuario, phone=telefone, address=endereco, year=ano_fundacao, category=categoria)
         login(request, novoUsuario)
-        return HttpResponseRedirect("/perfil/")
-    
+        return HttpResponseRedirect("/perfil")
+
 @require_POST
 def entrar(request):
     try:
@@ -94,10 +94,10 @@ def entrar(request):
         messages.error(request, "Usuário não existe ou credenciais incorretas")
         return HttpResponseRedirect("/")
     
-    usuario = authenticate(username=usuario_aux.username,password=request.POST["senha"])
+    usuario = authenticate(username=usuario_aux.username, password=request.POST["senha"])
     if usuario is not None:
         login(request, usuario)
-        return HttpResponseRedirect('/perfil/')
+        return HttpResponseRedirect('/perfil')
     return HttpResponseRedirect("/")
 
 @login_required

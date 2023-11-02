@@ -17,7 +17,5 @@ class InstagramProfile(models.Model):
     nomeRede = models.CharField(max_length=100)
 
 class Fotos(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Defina o usuário atualmente autenticado como padrão
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     foto = models.ImageField(upload_to='fotos/')
-
-    

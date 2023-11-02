@@ -10,4 +10,5 @@ urlpatterns = [
     path("perfil/", views.pagina_de_perfil, name='pagina_de_perfil'),
     path("ong/<str:slug>/", views.pagina_da_ong, name='pagina_da_ong'),
     path('add_foto/', views.add_foto, name='add_foto'),
+    path('remover-fotos/', views.remover_fotos, name='remover_fotos'),
 ]

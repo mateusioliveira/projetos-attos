@@ -7,7 +7,7 @@
 </div>
 
 <fieldset>
-    <legend> <h3> Redes Sociais </h3></legend>
+    <legend><h3>Redes Sociais</h3></legend>
     <form method="post" action="">
         {% csrf_token %}
         <label>Nome</label>
@@ -30,19 +30,28 @@
             </li>
         {% endfor %}
     </ul>
-
-    <h3>Fotos Enviadas:</h3>
-    <ul>
-        {% for photo in photos %}
-            <li>
-                <img src="{{ photo.foto.url }}" style="max-width: 300px;">
-            </li>
-        {% endfor %}
-    </ul>
-
+    
+    <h3>Adicionar Fotos:</h3>
+    
     <form method="post" action="{% url 'add_foto' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Enviar Fotos</button>
+        <button type="submit">Enviar </button>
     </form>
     
+    <form method="post" action="{% url 'remover_fotos' %}">
+        {% csrf_token %}
+        <fieldset style="float: left; width: 50%;">
+            <legend><h3>Remover Fotos</h3></legend>
+            <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap;">
+                {% for photo in photos %}
+                    <li style="margin-right: 20px;">
+                        <input type="checkbox" name="fotos_a_remover" value="{{ photo.id }}">
+                        <img src="{{ photo.foto.url }}" style="max-width: 100px;">
+                    </li>
+                {% endfor %}
+            </ul>
+            <button type="submit">Remover Fotos Selecionadas</button>
+        </fieldset>
+    </form>
+</div>
