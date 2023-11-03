@@ -18,6 +18,7 @@ class InstagramProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     instagram_link = models.URLField()
     nomeRede = models.CharField(max_length=100)
+    last_updated = models.DateTimeField(auto_now=True)
 
 class Fotos(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
