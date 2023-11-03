@@ -11,4 +11,5 @@ urlpatterns = [
     path("ong/<str:slug>/", views.pagina_da_ong, name='pagina_da_ong'),
     path('add_foto/', views.add_foto, name='add_foto'),
     path('remover-fotos/', views.remover_fotos, name='remover_fotos'),
+    path('adicionar_quantidade_doadores/', views.adicionar_quantidade_doadores, name='adicionar_quantidade_doadores'),
 ]

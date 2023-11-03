@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20)
@@ -19,3 +20,11 @@ class InstagramProfile(models.Model):
 class Fotos(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     foto = models.ImageField(upload_to='fotos/')
+
+class quantidadeDoadores(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    quantidade_doadores = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
+

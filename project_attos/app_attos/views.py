@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import UserProfile, InstagramProfile, Fotos
+from .models import UserProfile, InstagramProfile, Fotos, quantidadeDoadores
 from .forms import OngForm
 from django.contrib.auth.models import User
 
@@ -15,12 +15,26 @@ def index(request):
         return HttpResponseRedirect("/perfil/")
     return render(request, index_page_html)
 
+@login_required
 def pagina_da_ong(request, slug):
     usuario = get_object_or_404(User, username=slug)
     user_profile = get_object_or_404(UserProfile, user=usuario)
     profiles = InstagramProfile.objects.filter(user=usuario)
     fotos = Fotos.objects.filter(user=usuario)
-    return render(request, "pages/page.html", {"usuario": usuario, "user_profile": user_profile, 'profiles': profiles, 'fotos': fotos})
+    
+    try:
+        quantidade_doadores = quantidadeDoadores.objects.get(user=usuario)
+        quantidade_doadores_valor = quantidade_doadores.quantidade_doadores
+    except quantidadeDoadores.DoesNotExist:
+        quantidade_doadores_valor = 0
+
+    return render(request, "pages/page.html", {
+        "usuario": usuario,
+        "user_profile": user_profile,
+        'profiles': profiles,
+        'fotos': fotos,
+        'quantidade_doadores': quantidade_doadores_valor,
+    })
 
 def pagina_de_cadastro(request):
     return render(request, "cadastro/cadastro.html")
@@ -65,6 +79,18 @@ def remover_fotos(request):
         if fotos_a_remover:
             Fotos.objects.filter(id__in=fotos_a_remover).delete()
     return redirect('pagina_de_perfil')
+
+@login_required
+def adicionar_quantidade_doadores(request):
+    if request.method == 'POST':
+        quantidade = request.POST.get('quantidade_doadores')
+        if request.user.is_authenticated:
+            quantidade_doadores, created = quantidadeDoadores.objects.get_or_create(user=request.user)
+            if quantidade:
+                quantidade_doadores.quantidade_doadores += int(quantidade)
+                quantidade_doadores.save()
+    return redirect('pagina_de_perfil')
+
 
 @require_POST
 def cadastrar_usuario(request):
