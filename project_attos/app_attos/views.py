@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from .models import UserProfile, InstagramProfile, Fotos, quantidadeDoadores
 from .forms import OngForm
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 index_page_html = "app_attos/index.html"
 
@@ -21,6 +22,7 @@ def pagina_da_ong(request, slug):
     user_profile = get_object_or_404(UserProfile, user=usuario)
     profiles = InstagramProfile.objects.filter(user=usuario)
     fotos = Fotos.objects.filter(user=usuario)
+    current_datetime = user_profile.last_updated
     
     try:
         quantidade_doadores = quantidadeDoadores.objects.get(user=usuario)
@@ -34,6 +36,7 @@ def pagina_da_ong(request, slug):
         'profiles': profiles,
         'fotos': fotos,
         'quantidade_doadores': quantidade_doadores_valor,
+        'current_datetime': current_datetime,
     })
 
 def pagina_de_cadastro(request):
@@ -53,9 +56,13 @@ def instagram_button(request):
     if request.method == 'POST':
         instagram_link = request.POST.get('instagram_link')
         nomeRede = request.POST.get('nomeRede')
+        last_update=request.POST.get('last_update')
         if instagram_link:  
             instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
             instagram_profile.save()
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile.last_updated = timezone.now()
+            user_profile.save()
         else:
             messages.error(request, "O campo 'Instagram Link' não pode estar vazio.")
             return redirect('/perfil/') 
@@ -70,6 +77,9 @@ def add_foto(request):
         form.instance.user = request.user
         if form.is_valid():
             form.save()
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile.last_updated = timezone.now()
+            user_profile.save()
     return redirect('pagina_de_perfil')
 
 @login_required
@@ -78,6 +88,9 @@ def remover_fotos(request):
         fotos_a_remover = request.POST.getlist('fotos_a_remover')
         if fotos_a_remover:
             Fotos.objects.filter(id__in=fotos_a_remover).delete()
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile.last_updated = timezone.now()
+            user_profile.save()
     return redirect('pagina_de_perfil')
 
 @login_required
@@ -89,6 +102,9 @@ def adicionar_quantidade_doadores(request):
             if quantidade:
                 quantidade_doadores.quantidade_doadores += int(quantidade)
                 quantidade_doadores.save()
+                user_profile = UserProfile.objects.get(user=request.user)
+                user_profile.last_updated = timezone.now()
+                user_profile.save()
     return redirect('pagina_de_perfil')
 
 
