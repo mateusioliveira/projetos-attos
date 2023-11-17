@@ -135,7 +135,7 @@ def entrar(request):
     usuario = authenticate(username=usuario_aux.username, password=request.POST["senha"])
     if usuario is not None:
         login(request, usuario)
-        return HttpResponseRedirect('/perfil')
+        return HttpResponseRedirect('/home')
     return HttpResponseRedirect("/")
 
 @login_required
@@ -146,5 +146,5 @@ def sair(request):
 @login_required
 def home(request):
     
-    
+
     return render(request, "home/home.html")
