@@ -118,13 +118,9 @@ def cadastrar_usuario(request):
         nome_usuario = request.POST['nome-usuario']
         email = request.POST['email']
         senha = request.POST['senha']
-        telefone = request.POST['telefone']
-        endereco = request.POST['endereco']
-        ano_fundacao = request.POST['ano_fundacao']
-        categoria = request.POST['categoria']
         novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
         novoUsuario.save()
-        UserProfile.objects.create(user=novoUsuario, phone=telefone, address=endereco, year=ano_fundacao, category=categoria)
+        UserProfile.objects.create(user=novoUsuario, email=email)
         login(request, novoUsuario)
         return HttpResponseRedirect("/perfil")
 

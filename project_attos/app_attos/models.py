@@ -4,10 +4,7 @@ from django.utils import timezone
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=20)
-    address = models.CharField(max_length=255)
-    year = models.IntegerField()
-    category = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100, default='default_email@default.com')
     last_updated = models.DateTimeField(auto_now=True)
     
     
