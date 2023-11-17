@@ -122,7 +122,7 @@ def cadastrar_usuario(request):
         novoUsuario.save()
         UserProfile.objects.create(user=novoUsuario, email=email)
         login(request, novoUsuario)
-        return HttpResponseRedirect("/perfil")
+        return HttpResponseRedirect("/home")
 
 @require_POST
 def entrar(request):
@@ -142,3 +142,9 @@ def entrar(request):
 def sair(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+@login_required
+def home(request):
+    
+    
+    return render(request, "home/home.html")
