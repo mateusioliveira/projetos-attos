@@ -108,6 +108,9 @@ def adicionar_quantidade_doadores(request):
     return redirect('pagina_de_perfil')
 
 
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+
 @require_POST
 def cadastrar_usuario(request):
     try:
@@ -115,14 +118,23 @@ def cadastrar_usuario(request):
         if usuario_aux:
             return render(request, 'cadastro/cadastro.html', {'msg': 'Erro! Já existe um usuário com o mesmo e-mail'})
     except User.DoesNotExist:
-        nome_usuario = request.POST['nome-usuario']
-        email = request.POST['email']
-        senha = request.POST['senha']
-        novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
-        novoUsuario.save()
-        UserProfile.objects.create(user=novoUsuario, email=email)
-        login(request, novoUsuario)
-        return HttpResponseRedirect("/home")
+        try:
+            nome_usuario = request.POST['nome-usuario']
+            usuario_com_nome = User.objects.get(username=nome_usuario)
+            if usuario_com_nome:
+                return render(request, 'cadastro/cadastro.html', {'msg': 'Erro! Já existe um usuário com o mesmo nome'})
+        except User.DoesNotExist:
+            nome_usuario = request.POST['nome-usuario']
+            email = request.POST['email']
+            senha = request.POST['senha']
+            novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
+            novoUsuario.save()
+            UserProfile.objects.create(user=novoUsuario, email=email)
+            login(request, novoUsuario)
+            return redirect("/home") 
+
+    return render(request, 'cadastro/cadastro.html', {'msg': 'Erro desconhecido'})
+
 
 @require_POST
 def entrar(request):

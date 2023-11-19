@@ -1,54 +1,79 @@
 body {
-    font-family: Arial, sans-serif;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #FAF7ED;
+}
+
+
+.navbar {
+  background-color: #FAF7ED;
+  box-shadow: 0px 0px 15px 0px #00000040;
+  height: 60px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  z-index: 999;
+}
+
+
+.navbar ul {
+  list-style-type: none;
+}
+
+
+.navbar li {
+  display: inline;
+}
+
+
+.navbar li a {
+  color: black;
+  text-decoration: none;
+}
+
+
+
+
+.logo {
+  margin-left: 8px;
+  margin-top: -10px;
+  margin-bottom: -15px;
+  margin-right: 20px;
+}
+
+
+.menu-item {
+  margin-right: 20px;
+}
+
+.imagemtexo-imagem2{
+  margin-left: 22%;
+  margin-top: 5%;
   
-  
-  .navbar {
-    background-color:#bababa;
-    height: 60px;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    display: flex;
-    z-index: 1;
-  }
-  
-  
-  
-  
-  .navbar ul {
-    list-style-type: none;
-  }
-  
-  
-  .navbar li {
-    display: inline;
-  }
-  
-  
-  .navbar li a {
-    color: black;
-    text-decoration: none;
-  }
-  
-  
-  .navbar li a:hover {
-    background-color: #555;
-  }
-  
-  
-  .logo {
-    margin-left: 8px;
-    margin-top: -10px;
-    margin-bottom: -15px;
-    margin-right: 20px;
-  }
-  
-  
-  .menu-item{
-    margin-right: 20px;
-  }
-  
-  
+}
+
+.adicionar {
+  margin-left: 25%;
+  margin-top: 3%;
+  width: 10%;
+  height: 20%;
+  position: fixed;
+}
+
+.imagens{
+  margin-top: 6%;
+}
+
+.imagem1{
+  display: flex;
+  position: fixed;
+}
+
+.imagem2{
+  margin-left: 20%;
+  position: fixed;
+  z-index: -2; 
+}
+

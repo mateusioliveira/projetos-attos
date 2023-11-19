@@ -30,8 +30,6 @@
     </ul>
 </div>
 
-
-
 <div class="retangulo">
     <main class="main-container">
         <form method="post" action="{% url 'cadastrar_usuario' %}">
@@ -54,6 +52,11 @@
                             </button>
                             <p style="text-align: center;">Deseja fazer login?</p>
                             <a href="{% url 'index' %}">Login</a>
+                            {% if msg %}
+                            <script>
+                                alert("{{ msg }}");
+                            </script>
+                            {% endif %}
                         </div>
                 </div>
             </div>
