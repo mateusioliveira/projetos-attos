@@ -1,3 +1,5 @@
+from typing import Any
+from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth import authenticate, login, logout
@@ -8,6 +10,8 @@ from .models import UserProfile, InstagramProfile, Fotos, quantidadeDoadores, Re
 from .forms import OngForm, ReviewForm
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 index_page_html = "app_attos/index.html"
 
@@ -174,3 +178,12 @@ def home(request):
 
 
     return render(request, "home/home.html")
+
+class atualizarPerfil(UpdateView):
+    template_name = "perfil/perfil.html"
+    model = UserProfile, InstagramProfile, Fotos, quantidadeDoadores
+    fields = ['email', 'instagram_link', 'foto', 'quantidade_doadores']
+    success_url = reverse_lazy("page")
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(UserProfile, usuario=self.request.user)
