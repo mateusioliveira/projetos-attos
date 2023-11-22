@@ -6,8 +6,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=100, default='default_email@default.com')
     last_updated = models.DateTimeField(auto_now=True)
-    
-    
+
     def __str__(self):
         return self.user.username
 
@@ -26,3 +25,9 @@ class quantidadeDoadores(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Reviews(models.Model):
+    perfil = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    comentario = models.TextField()

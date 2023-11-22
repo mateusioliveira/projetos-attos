@@ -55,7 +55,26 @@
         </div>
     </div>
 
+    <h2>Deixe seu Review:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit">Enviar Review</button>
+    </form>
 
+    <h2>Reviews:</h2>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>Autor:</strong> {{ review.nome }}<br>
+                    <strong>Comentário:</strong> {{ review.comentario }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma review disponível.</p>
+    {% endif %}
 
 </body>
 

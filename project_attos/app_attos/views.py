@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import UserProfile, InstagramProfile, Fotos, quantidadeDoadores
-from .forms import OngForm
+from .models import UserProfile, InstagramProfile, Fotos, quantidadeDoadores, Reviews
+from .forms import OngForm, ReviewForm
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -16,19 +16,31 @@ def index(request):
         return HttpResponseRedirect("/perfil/")
     return render(request, index_page_html)
 
-@login_required
+
 def pagina_da_ong(request, slug):
     usuario = get_object_or_404(User, username=slug)
     user_profile = get_object_or_404(UserProfile, user=usuario)
     profiles = InstagramProfile.objects.filter(user=usuario)
     fotos = Fotos.objects.filter(user=usuario)
     current_datetime = user_profile.last_updated
-    
+
     try:
         quantidade_doadores = quantidadeDoadores.objects.get(user=usuario)
         quantidade_doadores_valor = quantidade_doadores.quantidade_doadores
     except quantidadeDoadores.DoesNotExist:
         quantidade_doadores_valor = 0
+
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.perfil = user_profile
+            review.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        review_form = ReviewForm()
+
+    reviews = Reviews.objects.filter(perfil=user_profile)
 
     return render(request, "pages/page.html", {
         "usuario": usuario,
@@ -37,6 +49,8 @@ def pagina_da_ong(request, slug):
         'fotos': fotos,
         'quantidade_doadores': quantidade_doadores_valor,
         'current_datetime': current_datetime,
+        'review_form' : review_form,
+        'reviews': reviews,
     })
 
 def pagina_de_cadastro(request):
@@ -44,7 +58,7 @@ def pagina_de_cadastro(request):
 
 @login_required
 def pagina_de_perfil(request):
-    form = OngForm()  
+    form = OngForm()
     profiles = instagram_button(request)
     photos = Fotos.objects.filter(user=request.user)
     return render(request, "perfil/perfil.html", {'form': form, 'profiles': profiles, 'photos': photos})
@@ -57,7 +71,7 @@ def instagram_button(request):
         instagram_link = request.POST.get('instagram_link')
         nomeRede = request.POST.get('nomeRede')
         last_update=request.POST.get('last_update')
-        if instagram_link:  
+        if instagram_link:
             instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
             instagram_profile.save()
             user_profile = UserProfile.objects.get(user=request.user)
@@ -65,7 +79,7 @@ def instagram_button(request):
             user_profile.save()
         else:
             messages.error(request, "O campo 'Instagram Link' não pode estar vazio.")
-            return redirect('/perfil/') 
+            return redirect('/perfil/')
     profiles = InstagramProfile.objects.filter(user=request.user)
     return profiles
 
@@ -131,7 +145,7 @@ def cadastrar_usuario(request):
             novoUsuario.save()
             UserProfile.objects.create(user=novoUsuario, email=email)
             login(request, novoUsuario)
-            return redirect("/home") 
+            return redirect("/home")
 
     return render(request, 'cadastro/cadastro.html', {'msg': 'Erro desconhecido'})
 
@@ -143,7 +157,7 @@ def entrar(request):
     except User.DoesNotExist:
         messages.error(request, "Usuário não existe ou credenciais incorretas")
         return HttpResponseRedirect("/")
-    
+
     usuario = authenticate(username=usuario_aux.username, password=request.POST["senha"])
     if usuario is not None:
         login(request, usuario)
@@ -157,6 +171,6 @@ def sair(request):
 
 @login_required
 def home(request):
-    
+
 
     return render(request, "home/home.html")
