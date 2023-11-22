@@ -16,7 +16,7 @@ def index(request):
         return HttpResponseRedirect("/perfil/")
     return render(request, index_page_html)
 
-@login_required
+
 def pagina_da_ong(request, slug):
     usuario = get_object_or_404(User, username=slug)
     user_profile = get_object_or_404(UserProfile, user=usuario)
