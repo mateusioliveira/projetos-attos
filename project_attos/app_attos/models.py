@@ -6,6 +6,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=100, default='default_email@default.com')
     last_updated = models.DateTimeField(auto_now=True)
+    perfil = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username

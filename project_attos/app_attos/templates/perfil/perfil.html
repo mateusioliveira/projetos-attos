@@ -57,6 +57,21 @@
     </form>
 </fieldset>
 
+<fieldset>
+  <legend>
+      <h3>Descrição do Perfil</h3>
+  </legend>
+  <form method="post">
+      {% csrf_token %}
+      <label for="perfil">Descrição</label>
+      <textarea placeholder="Insira a descrição do perfil" name="perfil" id="perfil" rows="4" cols="50"></textarea>
+      <br>
+      <br>
+      <input type="submit" value="Confirmar">
+  </form>
+</fieldset>
+
+
 <div style="margin-top: 20px;">
     <ul>
         {% for profile in profiles %}

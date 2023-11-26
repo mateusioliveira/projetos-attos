@@ -27,6 +27,7 @@ def pagina_da_ong(request, slug):
     profiles = InstagramProfile.objects.filter(user=usuario)
     fotos = Fotos.objects.filter(user=usuario)
     current_datetime = user_profile.last_updated
+    descricao_perfil = user_profile.perfil  
 
     try:
         quantidade_doadores = quantidadeDoadores.objects.get(user=usuario)
@@ -52,6 +53,7 @@ def pagina_da_ong(request, slug):
         'profiles': profiles,
         'fotos': fotos,
         'quantidade_doadores': quantidade_doadores_valor,
+        "descricao_perfil": descricao_perfil,
         'current_datetime': current_datetime,
         'review_form' : review_form,
         'reviews': reviews,
@@ -65,16 +67,28 @@ def pagina_de_perfil(request):
     form = OngForm()
     profiles = instagram_button(request)
     photos = Fotos.objects.filter(user=request.user)
-    return render(request, "perfil/perfil.html", {'form': form, 'profiles': profiles, 'photos': photos})
+    descricao = descricao_perfil(request)
+    return render(request, "perfil/perfil.html", {'form': form, 'profiles': profiles, 'photos': photos, 'descricao': descricao})
 
-
+@login_required
+def descricao_perfil(request):
+    perfil_descricao = request.POST.get('perfil')
+    if perfil_descricao:
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.last_updated = timezone.now()
+        user_profile.perfil = perfil_descricao
+        user_profile.save()
+        messages.success(request, "Descrição do perfil salva com sucesso.")
+    else:
+        messages.error(request, "O campo 'descrição do perfil' não pode estar vazio.")
+        return redirect('/perfil/')
 
 @login_required
 def instagram_button(request):
     if request.method == 'POST':
         instagram_link = request.POST.get('instagram_link')
         nomeRede = request.POST.get('nomeRede')
-        last_update=request.POST.get('last_update')
+        last_updated = request.POST.get('last_update')
         if instagram_link:
             instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
             instagram_profile.save()
