@@ -5,13 +5,11 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import UserProfile, InstagramProfile, Fotos, quantidadeDoadores, Reviews
-from .forms import OngForm, ReviewForm
+from .forms import OngForm, ReviewForm, UserProfileForm, FotosForm, InstagramProfileForm
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.views.generic.edit import UpdateView
-from django.urls import reverse_lazy
 
 index_page_html = "app_attos/index.html"
 
@@ -93,7 +91,7 @@ def instagram_button(request):
             instagram_profile = InstagramProfile(user=request.user, instagram_link=instagram_link, nomeRede=nomeRede)
             instagram_profile.save()
             user_profile = UserProfile.objects.get(user=request.user)
-            user_profile.last_updated = timezone.now()
+            user_profile.last_updated= timezone.now()
             user_profile.save()
         else:
             messages.error(request, "O campo 'Instagram Link' não pode estar vazio.")
@@ -193,11 +191,70 @@ def home(request):
 
     return render(request, "home/home.html")
 
-class atualizarPerfil(UpdateView):
-    template_name = "perfil/perfil.html"
-    model = UserProfile, InstagramProfile, Fotos, quantidadeDoadores
-    fields = ['email', 'instagram_link', 'foto', 'quantidade_doadores']
-    success_url = reverse_lazy("page")
+def edit_user_profile(request, user_id):
+    user_profile = get_object_or_404(UserProfile, user_id=user_id)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UserProfileForm(instance=user_profile)
+    return render(request, 'edit_user_profile.html', {'form': form})
 
-    def get_object(self, queryset=None):
-        self.object = get_object_or_404(UserProfile, usuario=self.request.user)
+def editar_intagram_profile(request, user_id):
+    user_profile = get_object_or_404(InstagramProfile, user_id=user_id)
+    if request.method == 'POST':
+        form = InstagramProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+    else:
+        form = InstagramProfileForm(instance=user_profile)
+    return render(request, 'edit_instagram_profile.html', {'form': form})
+
+def editar_foto(request, user_id):
+    user_profile = get_object_or_404(Fotos, user_id=user_id)
+    if request.method == 'POST':
+        form = FotosForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save()
+    else:
+        form = FotosForm(instance=user_profile)
+    return render(request, 'edit_foto.html', {'form': form})
+
+
+
+@login_required
+def editar_perfil_ong(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+        instagram_profile, created = InstagramProfile.objects.get_or_create(user=request.user, defaults={'instagram_link': '', 'nomeRede': ''})
+        fotos = Fotos.objects.filter(user=request.user)
+    except UserProfile.DoesNotExist:
+        return HttpResponse("UserProfile não encontrado.")
+
+    user_profile_form = UserProfileForm(instance=user_profile)
+    instagram_profile_form = InstagramProfileForm(instance=instagram_profile)
+    fotos_form = FotosForm()
+
+    if request.method == 'POST':
+        user_profile_form = UserProfileForm(request.POST, instance=user_profile)
+        instagram_profile_form = InstagramProfileForm(request.POST, instance=instagram_profile)
+        fotos_form = FotosForm(request.POST, request.FILES)
+
+        if user_profile_form.is_valid() or instagram_profile_form.is_valid() or fotos_form.is_valid():
+            user_profile_form.save()
+            instagram_profile_form.save()
+            if fotos_form.is_valid():
+                for foto in request.FILES.getlist('foto'):
+                    Fotos.objects.create(user=request.user, foto=foto)
+            messages.success(request, "Perfil atualizado com sucesso.")
+            return redirect('editar_perfil_ong')
+        else:
+            messages.error(request, "Erro ao atualizar o perfil. Verifique os campos.")
+
+    return render(request, "editar_perfil_ong/editar_perfil_ong.html", {
+        'user_profile_form': user_profile_form,
+        'instagram_profile_form': instagram_profile_form,
+        'fotos_form': fotos_form,
+        'fotos': fotos,
+    })

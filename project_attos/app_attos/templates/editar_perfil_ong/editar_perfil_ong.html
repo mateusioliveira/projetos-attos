@@ -1,0 +1,13 @@
+<fieldset>
+    <legend>
+        <h3>Descrição do Perfil</h3>
+    </legend>
+    <form method="post" action="{% url 'editar_perfil_ong' %}">
+        {% csrf_token %}
+        {{ user_profile_form.as_p }}
+        {{ instagram_profile_form.as_p }}
+        {{ fotos_form.as_p }}
+        <input type="submit" value="Confirmar">
+    </form>
+  </fieldset>
+  
