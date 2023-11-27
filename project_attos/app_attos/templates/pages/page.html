@@ -3,7 +3,7 @@
 
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'page.css' %}">
     <style>
         .photo-gallery {
             display: flex;
@@ -71,6 +71,13 @@
     {% else %}
         <p>Nenhuma review disponível.</p>
     {% endif %}
+
+
+    <title>Barra de Carregamento</title>
+    <h1>Meta de Doação</h1>
+    <p>Meta Anual: {{meta}}</p>
+    <p>Valor Arrecadado: {{valor_doado}}</p>
+    <progress value={{valor_doado}} max={{meta}}></progress>
 
 </body>
 

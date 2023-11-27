@@ -98,6 +98,27 @@
                 {% endfor %}
             </ul>
             <button type="submit">Remover Fotos Selecionadas</button>
+            
         </fieldset>
     </form>
+    
 </div>
+
+<fieldset>
+
+  <h1>Meta Anual</h1>
+  <form method="post" action="{% url 'meta_anual' %}">
+      {% csrf_token %}
+      <label for="meta_anual">Crie ou atualize sua meta:</label>
+      <input type="text" name="meta_anual" value="{{ user.meta_anual }}">
+      <button type="submit">Salvar</button>
+  </form>
+  
+  <h2>Valor Arrecadado</h2>
+  <form method="post" action="{% url 'meta_anual' %}">
+      {% csrf_token %}
+      <label for="valor_arrecadado">Adicionar valores doados:</label>
+      <input type="text" name="valor_arrecadado">
+      <button type="submit">Adicionar</button>
+  </form>
+</fieldset>

@@ -13,4 +13,6 @@ urlpatterns = [
     path('add_foto/', views.add_foto, name='add_foto'),
     path('remover-fotos/', views.remover_fotos, name='remover_fotos'),
     path('adicionar_quantidade_doadores/', views.adicionar_quantidade_doadores, name='adicionar_quantidade_doadores'),
+    path('meta_anual/', views.meta_anual, name='meta_anual'),
+
 ]

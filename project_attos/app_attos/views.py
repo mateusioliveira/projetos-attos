@@ -23,6 +23,8 @@ def pagina_da_ong(request, slug):
     profiles = InstagramProfile.objects.filter(user=usuario)
     fotos = Fotos.objects.filter(user=usuario)
     current_datetime = user_profile.last_updated
+    meta=user_profile.meta_anual
+    valor=user_profile.valor_arrecadado
 
     try:
         quantidade_doadores = quantidadeDoadores.objects.get(user=usuario)
@@ -51,6 +53,8 @@ def pagina_da_ong(request, slug):
         'current_datetime': current_datetime,
         'review_form' : review_form,
         'reviews': reviews,
+        'meta': meta,
+        'valor_doado': valor,
     })
 
 def pagina_de_cadastro(request):
@@ -62,7 +66,6 @@ def pagina_de_perfil(request):
     profiles = instagram_button(request)
     photos = Fotos.objects.filter(user=request.user)
     return render(request, "perfil/perfil.html", {'form': form, 'profiles': profiles, 'photos': photos})
-
 
 
 @login_required
@@ -174,3 +177,22 @@ def home(request):
 
 
     return render(request, "home/home.html")
+
+@login_required
+def meta_anual(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        valor_arrecadado = request.POST.get('valor_arrecadado')
+        if valor_arrecadado:
+            valor_arrecadado = float(valor_arrecadado)
+            user_profile.valor_arrecadado += valor_arrecadado
+            user_profile.save()
+            return HttpResponseRedirect("/")
+        meta_anual = request.POST.get('meta_anual')
+        if meta_anual:
+            user_profile.meta_anual = float(meta_anual)
+            user_profile.save()
+            return HttpResponseRedirect("/")
+    user_profile.last_updated = timezone.now()
+    user_profile.save()
+    return HttpResponseRedirect("/")
