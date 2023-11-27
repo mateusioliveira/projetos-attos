@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     meta_anual = models.FloatField(default=0.00)
     valor_arrecadado = models.FloatField(default=0.00)
+    perfil = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username

@@ -15,4 +15,5 @@ urlpatterns = [
     path('adicionar_quantidade_doadores/', views.adicionar_quantidade_doadores, name='adicionar_quantidade_doadores'),
     path('meta_anual/', views.meta_anual, name='meta_anual'),
 
+    path('editar_perfil_ong/', views.editar_perfil_ong, name='editar_perfil_ong'),
 ]
