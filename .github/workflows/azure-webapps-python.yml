@@ -1,20 +1,26 @@
-name: Build and deploy Python app to Azure Web App - project-attos
+name: Build and deploy Python app to Azure Web App
+
+env:
+  AZURE_WEBAPP_NAME: projetos-attos
+  PYTHON_VERSION: '3.11'             
 
 on:
   push:
-    branches:
-      - prod
+    branches: [ "main" ]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Python version
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v3.0.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
@@ -26,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r project_attos/requirements.txt
-        
+
       - name: Install Selenium
         run: pip install selenium
 
@@ -34,7 +40,7 @@ jobs:
         run: |
           python project_attos/manage.py runserver &
                   sleep 5
-          python project_attos/manage.py test app_attos
+          python project_attos/manage.py test app_cantinho
       
 
       - name: Upload artifact for deployment jobs
@@ -57,7 +63,7 @@ jobs:
         with:
           name: python-app
           path: |
-            project_cantinho
+            project_attos
             !venv/
 
   deploy:
