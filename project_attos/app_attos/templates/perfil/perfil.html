@@ -102,7 +102,7 @@
     <form method="post" action="{% url 'add_foto' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Enviar </button>
+        <button type="submit" name="enviar">Enviar </button>
     </form>
     <form method="post" action="{% url 'remover_fotos' %}">
         {% csrf_token %}
