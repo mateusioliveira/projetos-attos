@@ -41,11 +41,10 @@ jobs:
 
       - name: Run  server e Tests
         run: |
-          cd ..
           cd project_attos/
           python manage.py runserver &
                   sleep 5
-          python manage.py test app_attos.tests
+          python manage.py test app_attos
       
 
       - name: Upload artifact for deployment jobs
