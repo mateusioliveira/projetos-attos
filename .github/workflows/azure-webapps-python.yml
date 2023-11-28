@@ -41,7 +41,6 @@ jobs:
 
       - name: Run  server e Tests
         run: |
-          cd ..
           python manage.py runserver &
                   sleep 5
           python manage.py test app_attos
