@@ -42,9 +42,9 @@ jobs:
       - name: Run  server e Tests
         run: |
           cd ..
-          python project_attos/manage.py runserver &
+          python projetos-attos/project_attos/manage.py runserver &
                   sleep 5
-          python project_attos/manage.py test app_attos
+          python projetos-attos/project_attos/manage.py test app_attos
       
 
       - name: Upload artifact for deployment jobs
