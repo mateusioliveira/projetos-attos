@@ -45,7 +45,7 @@ jobs:
           cd project_attos/
           python manage.py runserver &
                   sleep 5
-          python manage.py test app_attos
+          python manage.py test app_attos.tests
       
 
       - name: Upload artifact for deployment jobs
