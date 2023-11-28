@@ -37,13 +37,17 @@ jobs:
         run: pip install selenium
 
       - name: Install Pillow
-        run: python -m pip install Pillow
-
+        run: |
+          python -m pip install Pillow
+          python project_attos/manage.py runserver &
+                  sleep 5
+          python project_attos/manage.py test app_attos
+          
       - name: Run  server e Tests
         run: |
-          python project_attos\manage.py runserver &
+          python project_attos/manage.py runserver &
                   sleep 5
-          python project_attos\manage.py test app_attos
+          python project_attos/manage.py test app_attos
       
 
       - name: Upload artifact for deployment jobs
