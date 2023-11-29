@@ -43,6 +43,9 @@ class Historia5(LiveServerTestCase):
         edit_perfil = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'div[name="perfil"] textarea'))
         )
+        edit_perfil = WebDriverWait(driver, 30).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, 'div[name="perfil"] textarea'))
+        )
         edit_perfil.clear()
         time.sleep(2)
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")
