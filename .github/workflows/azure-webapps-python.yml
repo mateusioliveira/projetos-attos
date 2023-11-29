@@ -24,8 +24,11 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
-      - name: Install dependencies
-        run: pip install -r project_attos/requirements.txt
+      - name: Install dependencies and Pillow
+        run: |
+          pip install -r project_attos/requirements.txt
+          python -m pip install Pillow
+            
         
       - name: Install Selenium
         run: pip install selenium
