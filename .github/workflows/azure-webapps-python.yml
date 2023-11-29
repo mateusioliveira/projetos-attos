@@ -42,9 +42,10 @@ jobs:
           
       - name: Run  server e Tests
         run: |
+          source venv/bin/activate
           python manage.py runserver &
-                  sleep 5
-          python manage.py test app_attos
+          sleep 5
+          pytest app_attos/
     
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
