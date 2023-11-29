@@ -6,9 +6,11 @@ from selenium.common.exceptions import NoSuchElementException, StaleElementRefer
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-
-
-driver=webdriver.Firefox()
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+driver = webdriver.Chrome(options=options)
 
 
 class Historia5(LiveServerTestCase):
