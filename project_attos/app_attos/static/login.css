@@ -82,13 +82,11 @@ body {
 }
 
 
-
-
 .input {
   width: 100%;
+  border: none;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
@@ -110,6 +108,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+
 }
 
 

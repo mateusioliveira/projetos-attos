@@ -1,108 +1,145 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #FAF7ED;
-  }
-  
-  
-  .navbar {
-    background-color: #FAF7ED;
-    box-shadow: 0px 0px 15px 0px #00000040;
-    height: 60px;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    display: flex;
-    z-index: 999;
-  }
-  
-  
-  
-  .navbar ul {
-    list-style-type: none;
-  }
-  
-  
-  .navbar li {
-    display: inline;
-  }
-  
-  
-  .navbar li a {
-    color: black;
-    text-decoration: none;
-  }
-  
-  
-  .navbar li a:hover {
-    background-color: #555;
-  }
-  
-  
-  .logo {
-    margin-left: 25px;
-    margin-top: -10px;
-    margin-bottom: -15px;
-    margin-right: 20px;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #FAF7ED;
+  padding-top: 100px;
+}
 
-  
+
+.navbar {
+  background-color: #FAF7ED;
+  box-shadow: 0px 0px 15px 0px #00000040;
+  height: 60px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  z-index: 999;
+}
+
+
+
+.navbar ul {
+  list-style-type: none;
+}
+
+
+.navbar li {
+  display: inline;
+}
+
+
+.navbar li a {
+  color: black;
+  text-decoration: none;
+}
+
+
+.navbar li a:hover {
+  background-color: #555;
+}
+
+
+.logo {
+  margin-left: 25px;
+  margin-top: -10px;
+  margin-bottom: -15px;
+  margin-right: 20px;
+}
+
+
 .menu-item {
   margin-right: 20px;
 }
 
-  
-  
-  .main-container {
-    max-width: 300px;
-    margin: 0 auto 0 auto;
-  }
-  
-  
-  .name-login{
-    text-align: center;
-  }
-  
-  
-  .esqueci-senha{
-    margin-top: 5px;
-    text-align: center;
-    color: #0090E1;
-  }
-  
-  
-  .retangulo {
-    width: 400px;
-    height: 550px;
-    top: 100px;
-    left: 36%;
-    border-radius: 17px;
-    position: absolute;
-    box-shadow: 0px 4px 20px 0px #00000040;
-    background-color: #FAF7ED;
-    border: none;
-  }
-  
-  
-  
-  
-  .input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  
-  .submit {
-    width: 35%;
-    height: 32px;
-    background-color: #327261;
-    color: black;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+
+
+.main-container {
+  max-width: 300px;
+  margin: 0 auto 0 auto;
+}
+
+
+.esqueci-senha {
+  margin-top: 5px;
+  text-align: center;
+  color: #0090E1;
+}
+
+
+.retangulo {
+  width: 610px;
+  height: 550px;
+  top: 120px;
+  left: 10%;
+  border-radius: 17px;
+  position: absolute;
+  box-shadow: 0px 4px 20px 0px #00000040;
+  background-color: #FAF7ED;
+  border: none;
+}
+
+
+
+.input {
+  width: 120%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border: none;
+}
+
+
+.submit {
+  width: 50%;
+  height: 35px;
+  background-color: #327261;
+  color: white;
+  padding: 10px;
+  margin-top: 14%;
+  margin-left: 25%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.centralizarlogin {
+  margin-top: 35%;
+  margin-left: -25%;
+}
+
+
+.forma-cadastro {
+  position: fixed;
+  top: 25%;
+  left: -20px;
+  z-index: -1;
+}
+
+.alinhar-seta {
+  display: flex;
+  align-items: center;
+}
+
+
+.seta {
+  position: relative;
+  left: -38px;
+  top: -30px;
+}
+
+.name-login {
+  margin-left: 30%;
+  margin-top: -10%;
+  font-size: 30px;
+}
+
+
+.fill-cadastro{
+  position: fixed;
+
+  top: 25%; 
+  left: 58%; 
+}
