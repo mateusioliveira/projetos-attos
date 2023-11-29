@@ -9,11 +9,7 @@ import time
 
 
 
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Firefox()
 
 
 class Historia5(LiveServerTestCase):
@@ -41,10 +37,7 @@ class Historia5(LiveServerTestCase):
         )
         editar_botao.click()
         edit_perfil = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'div[name="perfil"] textarea'))
-        )
-        edit_perfil = WebDriverWait(driver, 30).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, 'div[name="perfil"] textarea'))
+            EC.presence_of_element_located((By.XPATH, '//textarea[@name="perfil"]'))
         )
         edit_perfil.clear()
         time.sleep(2)
