@@ -8,11 +8,7 @@ import time
 
 
 
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-driver = webdriver.Chrome(options=options)
+driver=webdriver.Firefox()
 
 
 class Historia5(LiveServerTestCase):
@@ -39,7 +35,9 @@ class Historia5(LiveServerTestCase):
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button[name='botao_editar']"))
         )
         editar_botao.click()
-        edit_perfil = driver.find_element(By.NAME, 'perfil')
+        edit_perfil = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.NAME, 'perfil'))
+        )
         time.sleep(2)
         edit_perfil.clear()
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")
