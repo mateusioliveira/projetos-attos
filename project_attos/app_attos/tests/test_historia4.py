@@ -25,8 +25,9 @@ class Historia4(LiveServerTestCase):
 
         email.send_keys("teste25@teste.com")
         senha.send_keys("123")
-        entrar = driver.find_element(By.XPATH, "//button[@value='Entrar']")
-        time.sleep(2)
+        entrar = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR,  ".submit"))
+            )
         entrar.click()
         time.sleep(2)
         adicionar= driver.find_element(By.XPATH, "//button[@class='adicionar']")
