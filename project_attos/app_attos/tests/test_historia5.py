@@ -40,7 +40,9 @@ class Historia5(LiveServerTestCase):
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button[name='botao_editar']"))
         )
         editar_botao.click()
-        edit_perfil = driver.find_element(By.XPATH, '//div[@name="perfil"]//textarea')
+        edit_perfil = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'div[name="perfil"] textarea'))
+        )
         edit_perfil.clear()
         time.sleep(2)
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")
