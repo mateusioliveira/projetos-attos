@@ -42,9 +42,9 @@ jobs:
           
       - name: Run  server e Tests
         run: |
-          python project_attos/manage.py runserver &
-                  wait $!
-          python project_attos/manage.py test app_attos
+          python manage.py runserver &
+                  sleep 5
+          python manage.py test app_attos
     
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
