@@ -23,3 +23,7 @@ progress::-moz-progress-bar {
     background-color: #4caf50;
     border-radius: 8px;
 }
+
+svg {
+    pointer-events: none;
+}
