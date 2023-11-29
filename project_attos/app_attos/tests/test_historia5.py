@@ -7,11 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-driver = webdriver.Chrome(options=options)
+
+driver = webdriver.Firefox()
 
 
 
@@ -39,13 +36,7 @@ class Historia5(LiveServerTestCase):
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button[name='botao_editar']"))
         )
         editar_botao.click()
-        form = WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located((By.XPATH, "//form"))
-        )
-        edit_perfil = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, "//form//textarea[@name='perfil']"))
-        )
-
+        edit_perfil = driver.find_element(By.XPATH, '//div[@name="perfil"]//textarea')
         edit_perfil.clear()
         time.sleep(2)
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")

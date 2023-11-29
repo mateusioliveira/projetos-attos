@@ -4,7 +4,7 @@
     </legend>
     <form method="post" action="{% url 'editar_perfil_ong' %}">
         {% csrf_token %}
-        {{ user_profile_form.as_p }}
+        <div name= 'perfil'>{{ user_profile_form.as_p }}</div>
         {{ instagram_profile_form.as_p }}
         {{ fotos_form.as_p }}
         <input type="submit" value="Confirmar">
