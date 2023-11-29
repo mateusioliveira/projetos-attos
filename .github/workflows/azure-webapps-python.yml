@@ -35,8 +35,6 @@ jobs:
 
       - name: Run  server e Tests
         run: |
-          python project_attos/manage.py runserver &
-                  sleep 5
           python project_attos/manage.py test app_attos
       
 
