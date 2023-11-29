@@ -28,7 +28,6 @@ class Historia3(LiveServerTestCase):
         entrar = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR,  ".submit"))
         )
-        driver.execute_script("arguments[0].scrollIntoView();", entrar)
         entrar.click()
         time.sleep(2)
         adicionar= driver.find_element(By.XPATH, "//button[@class='adicionar']")
