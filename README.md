@@ -182,11 +182,10 @@ https://www.figma.com/file/VllWFhJIAQV6TzRIa1zPhw/Prot%C3%B3tipo-de-m%C3%A9dia--
 ### Screencast Protótipo de Média Fidelidade
 [https://drive.google.com/drive/u/0/my-drive](https://drive.google.com/file/d/1ov7oh05v8JqX-2APfJ1V4SkzSixINrj3/view?usp=sharing)
 
-### Diagrama de atividades
 
-https://drive.google.com/file/d/1Rbqktt9oP1j1Z59552xcTlSQBJyFOj10/view?usp=sharing
+## Issue/Bug traclker atualizado:
 
-- Atualizado:
+![image](https://github.com/mateusioliveira/projetos-attos/assets/98843736/b05abe80-05f9-4183-ba2e-7d016c30cc35)
 
 ![image](https://github.com/mateusioliveira/projetos-attos/assets/98843736/dfe0e015-8dbc-4eb1-919b-70c0fc6bf83c)
 
@@ -201,4 +200,8 @@ https://project-attos.azurewebsites.net/
 ### Relato programação em pares
 
 https://docs.google.com/document/d/1PhdnrsMWYIwlh3XZIB1KhjPRZmlufF1EG-vm1H_GWdE/edit?usp=sharing
+
+### Diagrama de atividades atualizado
+
+https://drive.google.com/file/d/1XwMnqJcUUv4eSq_qNaMpiyXQToLnvK8k/view?usp=sharing
 
