@@ -117,7 +117,7 @@
             <form method="post" action="{% url 'adicionar_quantidade_doadores' %}">
                 {% csrf_token %}
                 <input type="text" name="quantidade_doadores" required>
-                <button type="submit">Adicionar</button>
+                <button type="submit" name ='adicionar_doadores'>Adicionar</button>
             </form>
     </div>
 
