@@ -58,23 +58,17 @@
     
     **Então** o Instagram deve estar disponível
 		
-**4. Como uma ONG, gostaria de adicionar fotos à minha página.**
+**4. Como uma ONG, gostaria de remover fotos da minha página.**
 - Cenários de aceitação:
-  - Cenário: Deve adicionar uma foto à página
-    
-    **Dado que** a ONG não tenha nenhuma foto
-    
-    **Quando** a ONG adicionar uma foto
-    
-    **Então** a página deve conter uma foto
+  - Cenário: Deve remover uma foto na página
 
-  - Cenário: Deve adicionar duas fotos à página
     
-    **Dado que** a ONG tenha 2 fotos na página
+    **Dado que** a ONG tenha cinco fotos adicionada na página
     
-    **Quando** a ONG adicionar duas fotos
+    **Quando** a ONG selecionar apenas uma foto para removê-lá
     
-    **Então** a página deve conter 4 fotos
+    **Então** a página deve conter quatro fotos
+
 
 **5. Como ONG que possui uma página, gostaria de editar as informações que já foram inseridas.**
 - Cenários de aceitação:
@@ -97,6 +91,10 @@
 ### Protótipo de baixa fidelidade
 
 https://www.figma.com/file/eKETbfkDCNHzvM7OyACGbp/Wireframe?type=design&node-id=0%3A1&mode=design&t=IwqEGvG4eMyYerJf-1
+
+## Protótipo de média fidelidade
+
+https://www.figma.com/file/VllWFhJIAQV6TzRIa1zPhw/Prot%C3%B3tipo-de-m%C3%A9dia---CC?type=design&node-id=0-1&mode=design&t=mOGLEIJJtjWovJXZ-0
 
 ### Screencast Protótipo de Baixa Fidelidade
 [https://drive.google.com/file/d/1KoaUvc6jR0fqAHj-TKX7utW-RnOsRQeD/view?usp=drive_link](https://drive.google.com/file/d/1KoaUvc6jR0fqAHj-TKX7utW-RnOsRQeD/view?usp=sharing)
