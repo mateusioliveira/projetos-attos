@@ -14,7 +14,6 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
 
-
 class Historia5(LiveServerTestCase):
     def test_01(self):
         driver.get("http://127.0.0.1:8000")
@@ -39,9 +38,8 @@ class Historia5(LiveServerTestCase):
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button[name='botao_editar']"))
         )
         editar_botao.click()
-        edit_perfil = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, '//textarea[@name="perfil"]'))
-        )
+        time.sleep(2)
+        edit_perfil= driver.find_element(By.XPATH, "//textarea[@name='perfil']")
         edit_perfil.clear()
         time.sleep(2)
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")
