@@ -27,7 +27,18 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r project_attos/requirements.txt
+        run: |
+          pip install -r project_attos/requirements.txt
+          python -m pip install Pillow
+
+      - name: Install Selenium
+        run: pip install selenium
+
+      - name: Run  server e Tests
+        run: |
+          python project_attos/manage.py runserver &
+                  sleep 5
+          python project_attos/manage.py test app_attos
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
