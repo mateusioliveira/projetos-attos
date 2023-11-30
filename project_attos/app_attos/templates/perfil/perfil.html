@@ -46,6 +46,28 @@
 </div>
 
 <fieldset>
+  <legend>
+      <h3>Informações da Ong</h3>
+  </legend>
+  <form method="post" action="{% url 'ong_infos' %}">
+      {% csrf_token %}
+      <label>Email da Ong</label>
+      <input placeholder="Email da Ong" type="email" name="email_ong" id="email_ong" required>
+      <br>
+      <br>
+      <label>Ano de Fundação</label>
+      <input placeholder="Ano de Fundação" type="number" name="ano_fundacao" id="ano_fundacao" required>
+      <br>
+      <br>
+      <label>Endereço da Ong</label>
+      <input placeholder="Endereço" type="text" name="endereco_ong" id="endereco_ong" required>
+      <br>
+      <br>
+      <input type="submit" value="Confirmar" name="confirmar1">
+  </form>
+</fieldset>
+
+<fieldset>
     <legend>
         <h3>Redes Sociais</h3>
     </legend>
@@ -54,7 +76,7 @@
         <label>Nome</label>
         <input placeholder="Insira o nome" type="text" name="nomeRede" id="nomeRede" required>
         <br>
-        <br>  
+        <br>
         <label for="instagram_link">Link</label>
         <input placeholder="Insira o link" type="text" name="instagram_link" id="instagram_link" required>
         <br>
@@ -90,7 +112,7 @@
     </ul>
     <div>
         <h2>Quantidade de Doadores</h2>
-       
+
             <p> Atualize a quantidade de Doadores diariamente:</p>
             <form method="post" action="{% url 'adicionar_quantidade_doadores' %}">
                 {% csrf_token %}
@@ -98,7 +120,7 @@
                 <button type="submit">Adicionar</button>
             </form>
     </div>
-    
+
     <h3>Adicionar Fotos:</h3>
 
     <form method="post" action="{% url 'add_foto' %}" enctype="multipart/form-data">
@@ -121,10 +143,10 @@
                 {% endfor %}
             </ul>
             <button type="submit" name="remover">Remover Fotos Selecionadas</button>
-            
+
         </fieldset>
     </form>
-    
+
 </div>
 
 <fieldset>
@@ -136,7 +158,7 @@
       <input type="text" name="meta_anual" value="{{ user.meta_anual }}">
       <button type="submit">Salvar</button>
   </form>
-  
+
   <h2>Valor Arrecadado</h2>
   <form method="post" action="{% url 'meta_anual' %}">
       {% csrf_token %}

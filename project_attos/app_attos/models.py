@@ -9,6 +9,9 @@ class UserProfile(models.Model):
     meta_anual = models.FloatField(default=0.00)
     valor_arrecadado = models.FloatField(default=0.00)
     perfil = models.TextField(blank=True, null=True)
+    email_ong = models.EmailField(max_length=100, default='defaul@default.com')
+    endereco_ong = models.CharField(max_length=100, default='')
+    ano_fundacao = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username

@@ -27,7 +27,10 @@ def pagina_da_ong(request, slug):
     current_datetime = user_profile.last_updated
     meta=user_profile.meta_anual
     valor=user_profile.valor_arrecadado
-    descricao_perfil = user_profile.perfil  
+    descricao_perfil = user_profile.perfil
+    email_ong = user_profile.email_ong
+    ano_fundacao = user_profile.ano_fundacao
+    endereco_ong = user_profile.endereco_ong
 
     try:
         quantidade_doadores = quantidadeDoadores.objects.get(user=usuario)
@@ -59,10 +62,29 @@ def pagina_da_ong(request, slug):
         'reviews': reviews,
         'meta': meta,
         'valor_doado': valor,
+        'email_ong': email_ong,
+        'ano_fundacao': ano_fundacao,
+        'endereco_ong': endereco_ong,
     })
 
 def pagina_de_cadastro(request):
     return render(request, "cadastro/cadastro.html")
+
+def adicionar_info_ong(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        email_ong = request.POST.get('email_ong')
+        ano_fundacao = request.POST.get('ano_fundacao')
+        endereco_ong = request.POST.get('endereco_ong')
+
+        user_profile.email_ong = email_ong
+        user_profile.ano_fundacao = ano_fundacao
+        user_profile.endereco_ong = endereco_ong
+        user_profile.save()
+        return HttpResponseRedirect("/")
+    user_profile.last_updated = timezone.now()
+    user_profile.save()
+    return HttpResponseRedirect("/")
 
 @login_required
 def pagina_de_perfil(request):
