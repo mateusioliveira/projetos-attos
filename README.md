@@ -58,7 +58,7 @@
     
     **Então** o Instagram deve estar disponível
 		
-**4. Como uma ONG, gostaria de adicionar fotos à minha página.**
+**4. Como uma ONG, gostaria de remover fotos da minha página.**
 - Cenários de aceitação:
   - Cenário: Deve remover uma foto na página
 
