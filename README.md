@@ -205,3 +205,11 @@ https://docs.google.com/document/d/1PhdnrsMWYIwlh3XZIB1KhjPRZmlufF1EG-vm1H_GWdE/
 
 https://drive.google.com/file/d/1XwMnqJcUUv4eSq_qNaMpiyXQToLnvK8k/view?usp=sharing
 
+### Screencast pipeline CI/CD
+
+https://drive.google.com/file/d/19G7EadCbJOBxQWCdgNVGVM4YzTyC3bM_/view?usp=sharing
+
+### Sreencast testes do selenium
+
+https://drive.google.com/file/d/1VdPaY9oc4C5GcVZt71P9VHmyMvei4Edf/view?usp=sharing
+
