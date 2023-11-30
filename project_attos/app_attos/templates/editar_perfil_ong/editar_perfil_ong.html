@@ -1,5 +1,24 @@
 <fieldset>
     <legend>
+        <div class="seta">
+            <a href="{% url 'pagina_de_perfil' %}" >
+                <svg width="30" height="30" viewBox="0 0 50 40" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0.75" y1="-0.75" x2="35.8475" y2="-0.75"
+                        transform="matrix(-0.856168 0.516698 -0.816899 -0.576781 48.6719 0.668213)"
+                        stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                    <line x1="0.75" y1="-0.75" x2="35.8475" y2="-0.75"
+                        transform="matrix(-0.856168 0.516698 -0.816899 -0.576781 31.5586 1.20752)"
+                        stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                    <line x1="0.75" y1="-0.75" x2="35.8475" y2="-0.75"
+                        transform="matrix(0.856168 0.516698 0.816899 -0.576781 18.4375 19.0388)"
+                        stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                    <line x1="0.75" y1="-0.75" x2="35.8475" y2="-0.75"
+                        transform="matrix(0.856168 0.516698 0.816899 -0.576781 1.32227 19.5781)"
+                        stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </a>
+        </div>
         <h3>Descrição do Perfil</h3>
     </legend>
     <form method="post" action="{% url 'editar_perfil_ong' %}">
@@ -9,5 +28,4 @@
         {{ fotos_form.as_p }}
         <input type="submit" value="Confirmar">
     </form>
-  </fieldset>
-  
+</fieldset>
