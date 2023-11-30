@@ -182,6 +182,9 @@ https://www.figma.com/file/VllWFhJIAQV6TzRIa1zPhw/Prot%C3%B3tipo-de-m%C3%A9dia--
 ### Screencast Protótipo de Média Fidelidade
 [https://drive.google.com/drive/u/0/my-drive](https://drive.google.com/file/d/1ov7oh05v8JqX-2APfJ1V4SkzSixINrj3/view?usp=sharing)
 
+### Diagrama de atividades
+
+https://drive.google.com/file/d/1Rbqktt9oP1j1Z59552xcTlSQBJyFOj10/view?usp=sharing
 
 - Atualizado:
 
