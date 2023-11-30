@@ -26,10 +26,19 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
-      - name: Install dependencies
-        run: pip install -r project_attos/requirements.txt
+      - name: Install dependencies and Pillow
+        run: |
+          pip install -r project_attos/requirements.txt
+          python -m pip install Pillow
 
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Install Selenium
+        run: pip install selenium
+
+      - name: Run  server e Tests
+        run: |
+          python project_attos/manage.py runserver &
+                  sleep 5
+          python project_attos/manage.py test app_attos
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
