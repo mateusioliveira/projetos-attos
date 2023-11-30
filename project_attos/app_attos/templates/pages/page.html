@@ -59,7 +59,7 @@
     <form method="post">
         {% csrf_token %}
         {{ review_form.as_p }}
-        <button type="submit">Enviar Review</button>
+        <button type="submit" name='enviar'>Enviar Review</button>
     </form>
 
     <h2>Reviews:</h2>
@@ -68,7 +68,9 @@
             {% for review in reviews %}
                 <li>
                     <strong>Autor:</strong> {{ review.nome }}<br>
+                    <div name='comentario'>
                     <strong>Comentário:</strong> {{ review.comentario }}
+                    </div>
                 </li>
             {% endfor %}
         </ul>
