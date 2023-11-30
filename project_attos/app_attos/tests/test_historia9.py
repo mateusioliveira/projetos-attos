@@ -15,7 +15,7 @@ driver = webdriver.Chrome(options=options)
 class Historia3(LiveServerTestCase):
     def test_01(self):
         driver.get("http://127.0.0.1:8000/ong/teste25/")
-        descricao = driver.find_element(By.NAME, 'valor_arrecadado')
+        descricao = driver.find_element(By.NAME, 'meta')
         time.sleep(7)
 
         driver.get("http://127.0.0.1:8000")
@@ -32,13 +32,13 @@ class Historia3(LiveServerTestCase):
         entrar.click()
         adicionar= driver.find_element(By.XPATH, "//button[@class='adicionar']")
         adicionar.click()
-        valor = driver.find_element(By.NAME, 'valor_arrecadado')
-        valor.send_keys('500')
-        adicionar= driver.find_element(By.NAME, 'adicionar')
-        adicionar.click()
+        valor = driver.find_element(By.NAME, 'meta_anual')
+        valor.send_keys('5000')
+        salvar= driver.find_element(By.NAME, 'salvar')
+        salvar.click()
         time.sleep(2)
 
         driver.get("http://127.0.0.1:8000/ong/teste25/")
-        descricao = driver.find_element(By.NAME, 'valor_arrecadado')
+        meta = driver.find_element(By.NAME, 'meta')
         time.sleep(7)
-        self.assertTrue(descricao.is_enabled(), "a descrição não foi encontrada")
+        self.assertTrue(meta.is_enabled(), "a meta não foi encontrada")

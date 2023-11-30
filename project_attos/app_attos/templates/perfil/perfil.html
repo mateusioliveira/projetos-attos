@@ -156,7 +156,7 @@
       {% csrf_token %}
       <label for="meta_anual">Crie ou atualize sua meta:</label>
       <input type="text" name="meta_anual" value="{{ user.meta_anual }}">
-      <button type="submit">Salvar</button>
+      <button type="submit" name="salvar">Salvar</button>
   </form>
 
   <h2>Valor Arrecadado</h2>
