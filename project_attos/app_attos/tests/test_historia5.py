@@ -39,7 +39,7 @@ class Historia5(LiveServerTestCase):
         )
         editar_botao.click()
         time.sleep(2)
-        edit_perfil= driver.find_element(By.XPATH, "//textarea[@name='perfil']")
+        edit_perfil= driver.find_element(By.XPATH, "//textarea[@name='editar']")
         edit_perfil.clear()
         time.sleep(2)
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")
