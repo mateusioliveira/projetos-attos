@@ -70,10 +70,12 @@
   <form method="post">
       {% csrf_token %}
       <label for="perfil">Descrição</label>
+      <div name='descricao'>
       <textarea placeholder="Insira a descrição do perfil" name="perfil" id="perfil" rows="4" cols="50"></textarea>
+      </div>
       <br>
       <br>
-      <input type="submit" value="Confirmar">
+      <input type="submit" name ='confirmar'value="Confirmar">
   </form>
 </fieldset>
 
@@ -140,6 +142,6 @@
       {% csrf_token %}
       <label for="valor_arrecadado">Adicionar valores doados:</label>
       <input type="text" name="valor_arrecadado">
-      <button type="submit">Adicionar</button>
+      <button name = 'adicionar' type="submit">Adicionar</button>
   </form>
 </fieldset>
