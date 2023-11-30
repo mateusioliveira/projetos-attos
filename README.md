@@ -3,7 +3,6 @@
 **Integrantes do grupo - CC:**
 - Julia Felix
 - Matheus Roberto
-- Matheus Rian
 - Talita Daniele  
 - Victor Guilherme 
 - Vitória Régia
@@ -59,23 +58,17 @@
     
     **Então** o Instagram deve estar disponível
 		
-**4. Como uma ONG, gostaria de adicionar fotos à minha página.**
+**4. Como uma ONG, gostaria de remover fotos da minha página.**
 - Cenários de aceitação:
-  - Cenário: Deve adicionar uma foto à página
-    
-    **Dado que** a ONG não tenha nenhuma foto
-    
-    **Quando** a ONG adicionar uma foto
-    
-    **Então** a página deve conter uma foto
+  - Cenário: Deve remover uma foto na página
 
-  - Cenário: Deve adicionar duas fotos à página
     
-    **Dado que** a ONG tenha 2 fotos na página
+    **Dado que** a ONG tenha cinco fotos adicionada na página
     
-    **Quando** a ONG adicionar duas fotos
+    **Quando** a ONG selecionar apenas uma foto para removê-lá
     
-    **Então** a página deve conter 4 fotos
+    **Então** a página deve conter quatro fotos
+
 
 **5. Como ONG que possui uma página, gostaria de editar as informações que já foram inseridas.**
 - Cenários de aceitação:
@@ -87,17 +80,44 @@
     
       **Então** as alterações devem ser refletidas imediatamente no site público
 
+**6. Como um doador, eu gostaria de deixar um feedback na página da ONG.**
 
-### Histórias escolhidas para serem implementadas
+  **Dado que** o sistema possui um campo para os doadores escreverem comentarios sobre a ONG e eu sou um doador
+  
+  **Quando** escrevo e envio o meu comentário
+  
+  **Então** o sistema o mostrará na página
+
+
+
+### Histórias implementadas para o SR1
 
 1. Como uma ONG, eu gostaria de ter um espaço reservado para mostrar minhas informações.(Nome da ONG, email, telefone de contato, endereço, fundação e categoria da ONG)
 
 3. Como uma ONG, eu gostaria de inserir na minha página o link para meu perfil no instagram.
 
+### Historias implementadas para o SR2
+
+2. Como uma ONG, eu gostaria de adicionar mais de um meio de comunicação, como telefone e e-mail.
+4. Como uma ONG, gostaria de remover fotos da minha página.
+5. Como ONG que possui uma página, gostaria de editar as informações que já foram inseridas.
+6. Como um doador, eu gostaria de deixar um feedback na página da ONG.
 
 ### Protótipo de baixa fidelidade
 
 https://www.figma.com/file/eKETbfkDCNHzvM7OyACGbp/Wireframe?type=design&node-id=0%3A1&mode=design&t=IwqEGvG4eMyYerJf-1
+
+## Protótipo de média fidelidade
+
+https://www.figma.com/file/VllWFhJIAQV6TzRIa1zPhw/Prot%C3%B3tipo-de-m%C3%A9dia---CC?type=design&node-id=0-1&mode=design&t=mOGLEIJJtjWovJXZ-0
+
+### Screencast Protótipo de Baixa Fidelidade
+[https://drive.google.com/file/d/1KoaUvc6jR0fqAHj-TKX7utW-RnOsRQeD/view?usp=drive_link](https://drive.google.com/file/d/1KoaUvc6jR0fqAHj-TKX7utW-RnOsRQeD/view?usp=sharing)
+
+
+### Screencast Protótipo de Média Fidelidade
+[https://drive.google.com/drive/u/0/my-drive](https://drive.google.com/file/d/1ov7oh05v8JqX-2APfJ1V4SkzSixINrj3/view?usp=sharing)
+
 
 ### Diagrama de atividades
 
@@ -113,10 +133,12 @@ https://drive.google.com/file/d/1UTOd5p0q6E0jcMnwi_I_FqzYtx_WNoEp/view?usp=shari
 
 ![image](https://github.com/mateusioliveira/projetos-attos/assets/98843736/dfe0e015-8dbc-4eb1-919b-70c0fc6bf83c)
 
-
 ### Deployment na Azure
 
 https://project-attos.azurewebsites.net/
+
+### Screencast Deployment
+https://drive.google.com/file/d/1AF14gEdJD4Bnf-GVM9LZ-9enWJUW0c6i/view?usp=sharing
 
 
 ### Relato programação em pares

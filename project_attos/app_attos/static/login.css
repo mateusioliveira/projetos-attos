@@ -1,0 +1,163 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #FAF7ED;
+}
+
+
+.navbar {
+  background-color: #FAF7ED;
+  box-shadow: 0px 0px 15px 0px #00000040;
+  height: 60px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  z-index: 999;
+}
+
+
+
+
+.navbar ul {
+  list-style-type: none;
+}
+
+
+.navbar li {
+  display: inline;
+}
+
+
+.navbar li a {
+  color: black;
+  text-decoration: none;
+}
+
+
+.navbar li a:hover {
+  background-color: #555;
+}
+
+
+.logo {
+  margin-left: 25px;
+  margin-top: -10px;
+  margin-bottom: -15px;
+  margin-right: 20px;
+}
+
+
+.menu-item {
+  margin-right: 20px;
+}
+
+
+.main-container {
+  max-width: 300px;
+  margin: 0 auto 0 auto;
+}
+
+
+.esqueci-senha {
+  margin-top: -8px;
+  color: #0090E1;
+}
+
+.botton-entrar{
+  text-align: center;
+}
+.retangulo {
+  width: 400px;
+  height: 500px;
+  top: 120px;
+  right: 8%;
+  border-radius: 17px;
+  position: absolute;
+  box-shadow: 0px 4px 20px 0px #00000040;
+  background-color: #FAF7ED;
+  border: none;
+}
+
+
+.input {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+
+.centralizarlogin {
+  margin-top: 100px;
+}
+
+.name-login{
+  text-align: center;
+}
+
+.submit {
+  width: 35%;
+  height: 32px;
+  background-color: #327261;
+  color: #FAF7ED;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+
+.submit2 {
+  width: 50%;
+  height: 32px;
+  background-color: #F0EEE2;
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+.texto1 {
+  margin-top: -145%;
+  margin-left: -320%;
+}
+
+
+.texto2 {
+  margin-top: -25%;
+  margin-left: -320%;
+}
+
+.forma {
+  position: fixed;
+  top: 30%; 
+  left: 30%; 
+  height: 95vh;
+  width: 95vw; 
+  z-index: -1; 
+}
+
+.fill-login{
+  position: fixed;
+  top: 25%; 
+  left: 38%; 
+  
+}
+
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+svg {
+    pointer-events: none;
+}

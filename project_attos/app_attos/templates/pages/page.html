@@ -1,23 +1,92 @@
+<!DOCTYPE html>
+<html>
+
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'page.css' %}">
+    <style>
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .photo-gallery img {
+            max-width: calc(25% - 10px);
+            /* Define o tamanho das imagens em colunas de 4 com margem entre elas */
+            margin-bottom: 10px;
+            /* Espaço entre as imagens */
+        }
+    </style>
 </head>
 
-<div style="max-width: 300px; margin: 0 auto; padding: 20px; border-radius: 5px; text-align: center;">
-    <img width="300px" height="80px" src="{% static 'images/logo.png' %}" alt="Logo da Attos">
-    <h1 class="text-top">ONG {{ usuario.username }}</h1>
-    <p class="text">Email: {{ usuario.email }}</p>
-    <p class="text">Telefone: {{ user_profile.phone }}</p>
-    <p class="text">Endereço: {{ user_profile.address }}</p>
-    <p class="text">Ano de Fundação: {{ user_profile.year }}</p>
-    <p class="text">Categoria: {{ user_profile.category }}</p>
+<body>
+    <p name = 'ultima_atualizacao' style="text-align: right;"><small>Última atualização em: {{ current_datetime }}</small></p>
+    <div style="max-width: 300px; margin: 0 auto; padding: 20px; border-radius: 5px; text-align: center;">
+        <img width="300px" height="80px" src="{% static 'images/logo.png' %}" alt="Logo da Attos">
+        <h1 class="text-top">ONG {{ usuario.username }}</h1>
+        <p class="text" name="email_ong">Email: {{ usuario.userprofile.email_ong }}</p>
+        <p class="text">Endereço: {{ usuario.userprofile.endereco_ong }}</p>
+        <p class="text">Ano de Fundação: {{ usuario.userprofile.ano_fundacao }}</p>
 
-    <p class="text" >Redes Sociais:</p>
-    <ul>
-        {% for profile in profiles %}
-                <a href="{{ profile.instagram_link }}" target="_blank">
-                    <button class="botao">{{ profile.nomeRede }}</button>
-                </a>
-        {% endfor %}
-    </ul>
-</div>
+        <div name='quantidade_doadores'>
+            <h2>A ONG possui </h2>
+            <h2>{{ quantidade_doadores }} + doadores</h2>
+        </div>
+        <div name='descricao_perfil'>
+            <h2>Descrição do Perfil:</h2>
+            <p>{{ descricao_perfil }}</p>
+        </div>
+
+        <p class="text">Redes Sociais:</p>
+        <ul>
+            {% for profile in profiles %}
+            <a href="{{ profile.instagram_link }}" target="_blank">
+                <button class="botao" style="display: inline-block; padding: 10px 20px; background-color: #808080; color: #fff; text-decoration: none; border: none; border-radius: 5px; font-weight: bold;">{{ profile.nomeRede }}</button>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h2>Fotos</h2>
+        <div class="photo-gallery">
+            {% for foto in fotos %}
+            <img src="{{ foto.foto.url }}" alt="Foto">
+            {% endfor %}
+        </div>
+    </div>
+
+    <h2>Deixe seu Review:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit" name='enviar'>Enviar Review</button>
+    </form>
+
+    <h2>Reviews:</h2>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>Autor:</strong> {{ review.nome }}<br>
+                    <div name='comentario'>
+                    <strong>Comentário:</strong> {{ review.comentario }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma review disponível.</p>
+    {% endif %}
+
+
+    <title>Barra de Carregamento</title>
+    <h1>Meta de Doação</h1>
+    <p name="meta">Meta Anual: {{meta}}</p>
+    <p name = 'valor_arrecadado'>Valor Arrecadado: {{valor_doado}}</p>
+    <progress value={{valor_doado}} max={{meta}}></progress>
+
+</body>
+
+</html>

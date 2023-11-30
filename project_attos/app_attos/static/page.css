@@ -1,0 +1,29 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+progress {
+    width: 500px;
+    height: 100px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4caf50;
+    border-radius: 8px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #4caf50;
+    border-radius: 8px;
+}
+
+svg {
+    pointer-events: none;
+}

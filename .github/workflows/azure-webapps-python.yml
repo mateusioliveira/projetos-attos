@@ -1,0 +1,47 @@
+name: Build and deploy Python app to Azure Web App - project-attos
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies and Pillow
+        run: |
+          pip install -r project_attos/requirements.txt
+          python -m pip install Pillow
+            
+        
+      - name: Install Selenium
+        run: pip install selenium
+
+      - name: Run  server e Tests
+        run: |
+          python project_attos/manage.py runserver &
+                  sleep 5
+          python project_attos/manage.py test app_attos
+
+      - name: Cleaning testing files
+        run: |
+          cd project_attos/
+          rm db.sqlite3
+          rm .env
+          cd ..
