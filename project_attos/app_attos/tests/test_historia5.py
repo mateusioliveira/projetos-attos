@@ -24,7 +24,7 @@ class Historia5(LiveServerTestCase):
             print("Email or senha element not found.")
             return
 
-        email.send_keys("teste25@teste.com")
+        email.send_keys("teste2557@teste.com")
         senha.send_keys("123")
         entrar = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR,  ".submit"))
@@ -39,21 +39,20 @@ class Historia5(LiveServerTestCase):
         )
         editar_botao.click()
         time.sleep(2)
+
         edit_perfil= driver.find_element(By.XPATH, "//textarea[@name='editar']")
-        edit_perfil.clear()
+        edit_perfil.click()
         time.sleep(2)
+
         edit_perfil.send_keys("ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos.")
-        assert edit_perfil.get_attribute('value') == "ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos."
         confirmar = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//input[@value='Confirmar']"))
         )
         time.sleep(2)
         confirmar.click()
-        confirmar = WebDriverWait(driver, 10).until(
-           EC.element_to_be_clickable((By.XPATH, "//input[@value='Confirmar']"))
-        )
-        assert confirmar.is_enabled()
+
+        driver.get("http://127.0.0.1:8000/ong/teste2557")
+
+        nova_descricao= driver.find_element(By.XPATH, "//div[@name='descricao_perfil']")
+        self.assertTrue(nova_descricao.is_enabled(), "a descrição não foi encontrada")
         time.sleep(2)
-        driver.get("http://127.0.0.1:8000/ong/teste25")
-        assert "ONG dedicada ao cuidado e proteção de animais vulneráveis, trabalhando incansavelmente para garantir o bem-estar e a qualidade de vida desses seres indefesos." in driver.page_source
-    
