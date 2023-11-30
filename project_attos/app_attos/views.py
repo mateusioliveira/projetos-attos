@@ -223,6 +223,9 @@ def edit_user_profile(request, user_id):
             form.save()
     else:
         form = UserProfileForm(instance=user_profile)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.last_updated= timezone.now()
+    user_profile.save()
     return render(request, 'edit_user_profile.html', {'form': form})
 
 def editar_intagram_profile(request, user_id):
@@ -233,6 +236,9 @@ def editar_intagram_profile(request, user_id):
             form.save()
     else:
         form = InstagramProfileForm(instance=user_profile)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.last_updated= timezone.now()
+    user_profile.save()
     return render(request, 'edit_instagram_profile.html', {'form': form})
 
 def editar_foto(request, user_id):
@@ -243,6 +249,9 @@ def editar_foto(request, user_id):
             form.save()
     else:
         form = FotosForm(instance=user_profile)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.last_updated= timezone.now()
+    user_profile.save()
     return render(request, 'edit_foto.html', {'form': form})
 
 

@@ -133,13 +133,13 @@ body {
 
 .texto2 {
   margin-top: -25%;
-  margin-left: -310%;
+  margin-left: -320%;
 }
 
 .forma {
   position: fixed;
-  top: 27%; 
-  left: 26.2%; 
+  top: 30%; 
+  left: 30%; 
   height: 95vh;
   width: 95vw; 
   z-index: -1; 

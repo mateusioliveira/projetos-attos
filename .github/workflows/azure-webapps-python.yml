@@ -38,15 +38,6 @@ jobs:
           python project_attos/manage.py runserver &
                   sleep 5
           python project_attos/manage.py test app_attos
-      
-
-      - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v2
-        with:
-          name: python-app
-          path: |
-            .
-            !venv/
 
       - name: Cleaning testing files
         run: |
@@ -54,33 +45,3 @@ jobs:
           rm db.sqlite3
           rm .env
           cd ..
-
-      - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v2
-        with:
-          name: python-app
-          path: |
-            project_attos
-            !venv/
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: python-app
-          path: .
-
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: 'projetos-attos'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C2E34FC4AEC34B42B8A22C80E007B356 }}

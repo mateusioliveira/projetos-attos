@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <p style="text-align: right;"><small>Última atualização em: {{ current_datetime }}</small></p>
+    <p name = 'ultima_atualizacao' style="text-align: right;"><small>Última atualização em: {{ current_datetime }}</small></p>
     <div style="max-width: 300px; margin: 0 auto; padding: 20px; border-radius: 5px; text-align: center;">
         <img width="300px" height="80px" src="{% static 'images/logo.png' %}" alt="Logo da Attos">
         <h1 class="text-top">ONG {{ usuario.username }}</h1>
@@ -31,7 +31,7 @@
             <h2>A ONG possui </h2>
             <h2>{{ quantidade_doadores }} + doadores</h2>
         </div>
-        <div>
+        <div name='descricao_perfil'>
             <h2>Descrição do Perfil:</h2>
             <p>{{ descricao_perfil }}</p>
         </div>
@@ -59,7 +59,7 @@
     <form method="post">
         {% csrf_token %}
         {{ review_form.as_p }}
-        <button type="submit">Enviar Review</button>
+        <button type="submit" name='enviar'>Enviar Review</button>
     </form>
 
     <h2>Reviews:</h2>
@@ -68,7 +68,9 @@
             {% for review in reviews %}
                 <li>
                     <strong>Autor:</strong> {{ review.nome }}<br>
+                    <div name='comentario'>
                     <strong>Comentário:</strong> {{ review.comentario }}
+                    </div>
                 </li>
             {% endfor %}
         </ul>
@@ -80,7 +82,7 @@
     <title>Barra de Carregamento</title>
     <h1>Meta de Doação</h1>
     <p>Meta Anual: {{meta}}</p>
-    <p>Valor Arrecadado: {{valor_doado}}</p>
+    <p name = 'valor_arrecadado'>Valor Arrecadado: {{valor_doado}}</p>
     <progress value={{valor_doado}} max={{meta}}></progress>
 
 </body>

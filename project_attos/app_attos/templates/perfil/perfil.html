@@ -29,7 +29,7 @@
       <li class="menu-item">Sobre</a></li>
       <li class="menu-item">
         <a href="{% url 'editar_perfil_ong' %}">
-            <button class="botao" style="background-color: #808080; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold;">Editar Perfil</button>
+            <button class="botao" name="botao_editar" style="background-color: #808080; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold;">Editar Perfil</button>
         </a>
     </li>
     </ul>
@@ -70,10 +70,12 @@
   <form method="post">
       {% csrf_token %}
       <label for="perfil">Descrição</label>
+      <div name='descricao'>
       <textarea placeholder="Insira a descrição do perfil" name="perfil" id="perfil" rows="4" cols="50"></textarea>
+      </div>
       <br>
       <br>
-      <input type="submit" value="Confirmar">
+      <input type="submit" name ='confirmar'value="Confirmar">
   </form>
 </fieldset>
 
@@ -140,6 +142,6 @@
       {% csrf_token %}
       <label for="valor_arrecadado">Adicionar valores doados:</label>
       <input type="text" name="valor_arrecadado">
-      <button type="submit">Adicionar</button>
+      <button name = 'adicionar' type="submit">Adicionar</button>
   </form>
 </fieldset>
